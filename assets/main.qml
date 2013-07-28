@@ -3,18 +3,36 @@ NavigationPane {
     id: nav
     Page {
         Container {
-            ListView {
-                dataModel: XmlDataModel {
-                    source: "data.xml"
+            layout: DockLayout {
+
+            }
+            Container {
+                horizontalAlignment: HorizontalAlignment.Center
+                verticalAlignment: VerticalAlignment.Center
+
+                Container {
+                    verticalAlignment: VerticalAlignment.Center
+                    bottomPadding: 20.0
+                    ImageButton {
+                        id: btnNewEnergyReport
+                        defaultImageSource: "asset:///images/newReport.jpg"
+                        onClicked: {
+                            nav.push(pageLocation)
+                        }
+                    }
+                    Label {
+                        text: qsTr("New Energy Report")
+                    }
                 }
-                onTriggered: {
-
-                    if (indexPath.length > 1) {
-                        var chosenItem = dataModel.data(indexPath);
-                        var contentpage = itemPageDefinition.createObject();
-
-                        contentpage.itemPageTitle = chosenItem.name
-                        nav.push(contentpage);
+                Container {
+                    verticalAlignment: VerticalAlignment.Center
+                    topMargin: 20.0
+                    ImageButton {
+                        id: btnOpenEnergyReport
+                        defaultImageSource: "asset:///images/openReport.jpg"
+                    }
+                    Label {
+                        text: qsTr("Open Energy Report")
                     }
                 }
             }
@@ -23,12 +41,8 @@ NavigationPane {
 
     }
     attachedObjects: [
-        ComponentDefinition {
-            id: itemPageDefinition
-            source: "ItemPage.qml"
+        PageLocation {
+        id: pageLocation
         }
     ]
-    onPopTransitionEnded: {
-        page.destroy();
-    }
 }
