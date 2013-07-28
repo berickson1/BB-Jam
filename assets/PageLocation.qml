@@ -2,7 +2,9 @@ import bb.cascades 1.0
 Page {
     Container {
         ListView {
+            id: listView
             dataModel: XmlDataModel {
+                id: listModel
                 source: "data.xml"
             }
             listItemComponents: [
@@ -28,8 +30,10 @@ Page {
                 if (indexPath.length > 1) {
                     var chosenItem = dataModel.data(indexPath);
                     var contentpage = itemPageDefinition.createObject();
-
+                    
+                    contentpage.listView.rootIndexPath = indexPath;
                     contentpage.itemPageTitle = chosenItem.name
+                    
                     nav.push(contentpage);
                 }
             }
