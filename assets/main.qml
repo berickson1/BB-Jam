@@ -22,8 +22,8 @@ NavigationPane {
                     }
                     Label {
 
-                        text: qsTr("NEW ENERGY REPORT")
-                        textFormat: TextFormat.Plain
+                        text: qsTr("New Energy Report").toUpperCase()
+                        textFormat: TextFormat.Html
                         textStyle.fontSize: FontSize.Large
                         textStyle.fontStyle: FontStyle.Normal
                         textStyle.fontWeight: FontWeight.Normal
@@ -38,7 +38,7 @@ NavigationPane {
                         defaultImageSource: "asset:///images/openReport.png"
                     }
                     Label {
-                        text: qsTr("OPEN ENERGY REPORT")
+                        text: qsTr("Open Energy Report").toUpperCase()
                         textFormat: TextFormat.Plain
                         textStyle.fontSize: FontSize.Large
                         textStyle.fontStyle: FontStyle.Normal

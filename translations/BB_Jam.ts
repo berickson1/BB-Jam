@@ -4,11 +4,11 @@
 <context>
     <name>main</name>
     <message>
-        <source>NEW ENERGY REPORT</source>
+        <source>New Energy Report</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>OPEN ENERGY REPORT</source>
+        <source>Open Energy Report</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
