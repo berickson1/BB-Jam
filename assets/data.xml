@@ -21,7 +21,7 @@
         	<object name="Electric Range Self Cleaning, (less then 20 years)" value= "61.75" />
         	<object name="Electric Range Non Self Cleaning" value= "65" />
      	</item>
-		<item  name="Refrigerators" image="">
+		<item  name="Refrigerators" image="refrigerator.png">
 			<object name="Chest Freezer, manual defrost, 16 cu.ft." value= "" />
         	<object name="Upright Freezer, frost-free, 18-20 cu.ft." value= "" />
         	<object name="Compact Refrigerator, less than 2 cu.ft." value= "" />
@@ -65,7 +65,7 @@
 			<object name="typical 17 CRT monitor" value="80" />
 			<object name="typical 17 LCD monitor" value="35" />
      	</item>
-		<item  name="Household Items" image="">
+		<item  name="Household Items" image="householditems.png">
 			<object name="Clothes Washer (excluding)" value="600" />
             <object name="Clothes Dryer" value="5000" />
             <object name="Sewing Machine" value="115" />
@@ -99,7 +99,7 @@
             <object name="Reciprocating Saw" value="750" />
             <object name="Electric Chain Saw (12)" value="440" />
         </item>
-        <item  name="Miscellaneous"  image="">
+        <item  name="Miscellaneous"  image="miscellaneous.png">
             <object name="Air Cleaner - Desktop" value="50" />
             <object name="Aquarium (10 - 24 gal.)" value="72" />
             <object name="Fan (portable)" value="75" />
