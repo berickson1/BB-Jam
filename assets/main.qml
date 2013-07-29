@@ -15,13 +15,19 @@ NavigationPane {
                     bottomPadding: 20.0
                     ImageButton {
                         id: btnNewEnergyReport
-                        defaultImageSource: "asset:///images/newReport.jpg"
+                        defaultImageSource: "asset:///images/newReport.png"
                         onClicked: {
                             nav.push(pageLocation)
                         }
                     }
                     Label {
-                        text: qsTr("New Energy Report")
+
+                        text: qsTr("NEW ENERGY REPORT")
+                        textFormat: TextFormat.Plain
+                        textStyle.fontSize: FontSize.Large
+                        textStyle.fontStyle: FontStyle.Normal
+                        textStyle.fontWeight: FontWeight.Normal
+                        textStyle.color: Color.DarkGreen
                     }
                 }
                 Container {
@@ -29,10 +35,15 @@ NavigationPane {
                     topMargin: 20.0
                     ImageButton {
                         id: btnOpenEnergyReport
-                        defaultImageSource: "asset:///images/openReport.jpg"
+                        defaultImageSource: "asset:///images/openReport.png"
                     }
                     Label {
-                        text: qsTr("Open Energy Report")
+                        text: qsTr("OPEN ENERGY REPORT")
+                        textFormat: TextFormat.Plain
+                        textStyle.fontSize: FontSize.Large
+                        textStyle.fontStyle: FontStyle.Normal
+                        textStyle.fontWeight: FontWeight.Normal
+                        textStyle.color: Color.DarkGreen
                     }
                 }
             }
@@ -42,7 +53,7 @@ NavigationPane {
     }
     attachedObjects: [
         PageLocation {
-        id: pageLocation
+            id: pageLocation
         }
     ]
 }
