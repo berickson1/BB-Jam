@@ -1,5 +1,5 @@
 1
-17
+18
 CustomImageButton.qml
 data.xml
 images/computer.png
@@ -15,5 +15,6 @@ images/refrigerator.png
 images/television.png
 images/washroom.png
 ItemPage.qml
+itemPicker.xml
 main.qml
 PageLocation.qml
