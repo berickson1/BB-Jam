@@ -9,48 +9,24 @@ NavigationPane {
             Container {
                 horizontalAlignment: HorizontalAlignment.Center
                 verticalAlignment: VerticalAlignment.Center
-
-                Container {
-                    verticalAlignment: VerticalAlignment.Center
-                    bottomPadding: 20.0
-                    ImageButton {
-                        id: btnNewEnergyReport
-                        defaultImageSource: "asset:///images/newReport.png"
-                        onClicked: {
-                            nav.push(pageLocation)
-                        }
-                    }
-                    Label {
-
-                        text: qsTr("New Energy Report").toUpperCase()
-                        textFormat: TextFormat.Html
-                        textStyle.fontSize: FontSize.Large
-                        textStyle.fontStyle: FontStyle.Normal
-                        textStyle.fontWeight: FontWeight.Normal
-                        textStyle.color: Color.DarkGreen
+                CustomImageButton {
+                    text: qsTr("New Energy Report").toUpperCase()
+                    image: "asset:///images/newReport.png"
+                    onClicked: {
+                        nav.push(pageLocation);
                     }
                 }
-                Container {
-                    verticalAlignment: VerticalAlignment.Center
-                    topMargin: 20.0
-                    ImageButton {
-                        id: btnOpenEnergyReport
-                        defaultImageSource: "asset:///images/openReport.png"
-                    }
-                    Label {
-                        text: qsTr("Open Energy Report").toUpperCase()
-                        textFormat: TextFormat.Plain
-                        textStyle.fontSize: FontSize.Large
-                        textStyle.fontStyle: FontStyle.Normal
-                        textStyle.fontWeight: FontWeight.Normal
-                        textStyle.color: Color.DarkGreen
+                CustomImageButton {
+                    text: qsTr("Open Energy Report").toUpperCase()
+                    image: "asset:///images/openReport.png"
+                    onClicked: {
+                        nav.push(pageLocation);
                     }
                 }
             }
-
         }
-
     }
+
     attachedObjects: [
         PageLocation {
             id: pageLocation
