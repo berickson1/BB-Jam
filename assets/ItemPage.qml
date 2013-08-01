@@ -46,6 +46,17 @@ Page {
                                         horizontalAlignment: HorizontalAlignment.Center
                                     }
                                 }
+                            },
+                            PickerItemComponent {
+                                type: "item3"
+                                
+                                content: Container {
+                                    Label {
+                                        text: pickerItemData.text
+                                        verticalAlignment: VerticalAlignment.Center
+                                        horizontalAlignment: HorizontalAlignment.Center
+                                    }
+                                }
                             }
                         ]
                         
