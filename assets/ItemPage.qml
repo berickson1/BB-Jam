@@ -63,7 +63,8 @@ Page {
                         onSelectedValueChanged: {
                             var index0 = picker.selectedIndex(0);
                             var index1 = picker.selectedIndex(1);
-                            console.log("Selection: " + index0 + ", " + index1);
+                            var index2 = picker.selectedIndex(2);
+                            console.log("Selection: " + index0 + ", " + index1 + ", " + index2);
                         }
                     }
                 
