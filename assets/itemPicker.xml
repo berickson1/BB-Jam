@@ -332,8 +332,7 @@
 </column>
 <column colspan="2">
 <item3 text="Year Round" />
-<item3 text="0 months" />
-<item3 text="1 months" />
+<item3 text="1 month" />
 <item3 text="2 months" />
 <item3 text="3 months" />
 <item3 text="4 months" />
