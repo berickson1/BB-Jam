@@ -16,18 +16,21 @@ Page {
             listItemComponents: [
                 ListItemComponent {
                     type: "object"
-                    
+
                     Picker {
                         id: picker
                         title: ListItemData.name
-                        
+
                         rootIndexPath: []
-                        dataModel: XmlDataModel { source: "itemPicker.xml" }
-                        
+                        dataModel: XmlDataModel {
+                            source: "itemPicker.xml"
+                        }
+                        horizontalAlignment: HorizontalAlignment.Fill
+
                         pickerItemComponents: [
                             PickerItemComponent {
                                 type: "item1"
-                                
+
                                 content: Container {
                                     Label {
                                         text: pickerItemData.text
@@ -38,7 +41,7 @@ Page {
                             },
                             PickerItemComponent {
                                 type: "item2"
-                                
+
                                 content: Container {
                                     Label {
                                         text: pickerItemData.text
@@ -49,7 +52,7 @@ Page {
                             },
                             PickerItemComponent {
                                 type: "item3"
-                                
+
                                 content: Container {
                                     Label {
                                         text: pickerItemData.text
@@ -59,7 +62,7 @@ Page {
                                 }
                             }
                         ]
-                        
+
                         onSelectedValueChanged: {
                             var index0 = picker.selectedIndex(0);
                             var index1 = picker.selectedIndex(1);
@@ -67,7 +70,7 @@ Page {
                             console.log("Selection: " + index0 + ", " + index1 + ", " + index2);
                         }
                     }
-                
+
                 }
             ]
         }
