@@ -31,34 +31,29 @@ Page {
                             PickerItemComponent {
                                 type: "item1"
 
-                                content: Container {
-                                    Label {
-                                        text: pickerItemData.text
-                                        verticalAlignment: VerticalAlignment.Center
-                                        horizontalAlignment: HorizontalAlignment.Center
-                                    }
+                                content: Label {
+                                    text: pickerItemData.text
+                                    verticalAlignment: VerticalAlignment.Center
+                                    horizontalAlignment: HorizontalAlignment.Center
                                 }
                             },
                             PickerItemComponent {
                                 type: "item2"
 
-                                content: Container {
-                                    Label {
-                                        text: pickerItemData.text
-                                        verticalAlignment: VerticalAlignment.Center
-                                        horizontalAlignment: HorizontalAlignment.Center
-                                    }
+                                content: Label {
+                                    text: pickerItemData.text
+                                    verticalAlignment: VerticalAlignment.Center
+                                    horizontalAlignment: HorizontalAlignment.Center
                                 }
+
                             },
                             PickerItemComponent {
                                 type: "item3"
 
-                                content: Container {
-                                    Label {
-                                        text: pickerItemData.text
-                                        verticalAlignment: VerticalAlignment.Center
-                                        horizontalAlignment: HorizontalAlignment.Center
-                                    }
+                                content: Label {
+                                    text: pickerItemData.text
+                                    verticalAlignment: VerticalAlignment.Center
+                                    horizontalAlignment: HorizontalAlignment.Center
                                 }
                             }
                         ]
