@@ -1,5 +1,5 @@
 <model>
-  <column >
+<column>
 <item1 text="x0" />
 <item1 text="x1" />
 <item1 text="x2" />
@@ -301,8 +301,8 @@
 <item1 text="x298" />
 <item1 text="x299" />
 <item1 text="x300" />
-  </column>
-  <column loop="true">
+</column>
+<column loop="true" colspan="2">
 <item2 text="0 hours" />
 <item2 text="1 hour" />
 <item2 text="2 hours" />
@@ -329,8 +329,8 @@
 <item2 text="22 hours" />
 <item2 text="23 hours" />
 <item2 text="All Day" />
-  </column>
-  <column>
+</column>
+<column colspan="2">
 <item3 text="Year Round" />
 <item3 text="0 months" />
 <item3 text="1 months" />
@@ -344,5 +344,5 @@
 <item3 text="9 months" />
 <item3 text="10 months" />
 <item3 text="11 months" />
-  </column>
+</column>
 </model>
