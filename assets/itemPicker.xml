@@ -305,6 +305,9 @@
 </column>
 <column loop="true" colspan="2">
 <item2 text="0 hours" value="0" />
+<item2 text="15 mins" value="0.25" />
+<item2 text="1/2 hour" value="0.5" />
+<item2 text="3/4 hour" value="0.75" />
 <item2 text="1 hour" value="1" />
 <item2 text="2 hours" value="2" />
 <item2 text="3 hours" value="3" />
@@ -332,6 +335,10 @@
 </column>
 <column colspan="2">
 <item3 text="Year Round" value="12" />
+<item3 text="Weekly" value="0.03" />
+<item3 text="Bi-Weekly" value="0.06" />
+<item3 text="Week Days" value="0.733" />
+<item3 text="Weekends" value="0.27" />
 <item3 text="1 month" value="1" />
 <item3 text="2 months" value="2" />
 <item3 text="3 months" value="3" />
