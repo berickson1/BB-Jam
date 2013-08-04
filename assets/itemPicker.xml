@@ -335,10 +335,10 @@
 </column>
 <column colspan="2">
 <item3 text="Year Round" value="12" />
-<item3 text="Weekly" value="0.03" />
-<item3 text="Bi-Weekly" value="0.06" />
-<item3 text="Week Days" value="0.733" />
-<item3 text="Weekends" value="0.27" />
+<item3 text="Weekly" value="1.714" />
+<item3 text="Bi-Weekly" value="0.857" />
+<item3 text="Week Days" value="8.571" />
+<item3 text="Weekends" value="3.429" />
 <item3 text="1 month" value="1" />
 <item3 text="2 months" value="2" />
 <item3 text="3 months" value="3" />
