@@ -1,4 +1,5 @@
 import bb.cascades 1.0
+import bb.system 1.0
 NavigationPane {
     id: nav
     Page {
@@ -13,7 +14,7 @@ NavigationPane {
                     text: qsTr("New Energy Report").toUpperCase()
                     image: "asset:///images/newReport.png"
                     onClicked: {
-                        nav.push(pageLocation);
+                        prompt.show()
                     }
                 }
                 CustomImageButton {
@@ -30,6 +31,21 @@ NavigationPane {
     attachedObjects: [
         PageLocation {
             id: pageLocation
+        },
+        SystemPrompt{
+            id: prompt
+            title: qsTr("New Energy Report Name")
+            modality: SystemUiModality.Application
+            inputField.inputMode: SystemUiInputMode.Default
+            inputField.emptyText: qsTr("Please enter a Energy Report name...")
+            onFinished:{
+                if (result == SystemUiResult.ConfirmButtonSelection){
+                    console.log(inputFieldTextEntry())
+                    nav.push(pageLocation);
+                } else {
+                    console.log("Prompt Closed")
+                }
+            }
         }
     ]
 }

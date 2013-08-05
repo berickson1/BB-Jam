@@ -11,5 +11,13 @@
         <source>Open Energy Report</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enter a name for your Energy Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a Energy Report name...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
