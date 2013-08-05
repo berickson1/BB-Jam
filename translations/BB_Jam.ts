@@ -12,11 +12,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enter a name for your Energy Report</source>
+        <source>Please enter a Energy Report name...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter a Energy Report name...</source>
+        <source>New Energy Report Name</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

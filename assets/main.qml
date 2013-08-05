@@ -14,14 +14,17 @@ NavigationPane {
                     text: qsTr("New Energy Report").toUpperCase()
                     image: "asset:///images/newReport.png"
                     onClicked: {
-                        prompt.show()
+                        promptNew.show();
                     }
                 }
                 CustomImageButton {
                     text: qsTr("Open Energy Report").toUpperCase()
                     image: "asset:///images/openReport.png"
                     onClicked: {
-                        nav.push(pageLocation);
+                        promptOpen.clearList();
+                        promptOpen.appendItem("Test 1");
+                        promptOpen.appendItem("Test 2");
+                        promptOpen.show();
                     }
                 }
             }
@@ -33,19 +36,38 @@ NavigationPane {
             id: pageLocation
         },
         SystemPrompt{
-            id: prompt
+            id: promptNew
             title: qsTr("New Energy Report Name")
             modality: SystemUiModality.Application
             inputField.inputMode: SystemUiInputMode.Default
             inputField.emptyText: qsTr("Please enter a Energy Report name...")
             onFinished:{
                 if (result == SystemUiResult.ConfirmButtonSelection){
-                    console.log(inputFieldTextEntry())
+                    console.log("Report Name: " + inputFieldTextEntry());
+                    pageLocation.newReport = true;
+                    pageLocation.name = inputFieldTextEntry();
                     nav.push(pageLocation);
                 } else {
-                    console.log("Prompt Closed")
+                    console.log("Prompt Closed");
                 }
             }
+        },
+        SystemListDialog {
+            property bool created: false
+            id: promptOpen
+            title: qsTr("Open Energy Report")
+            selectionMode: ListSelectionMode.Single
+            onFinished: {
+                if (result == SystemUiResult.ConfirmButtonSelection){
+                    console.log("Report Name Index: " + selectedIndices)
+                    pageLocation.newReport = false;
+                    //TODO: Wireup name passthrough
+                    pageLocation.name = "";
+                    nav.push(pageLocation);
+                }
+                
+            }
+            
         }
     ]
 }
