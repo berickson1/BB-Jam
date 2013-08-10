@@ -1,7 +1,8 @@
 1
-18
+19
 CustomImageButton.qml
 data.xml
+db/reports.db
 images/computer.png
 images/drill.png
 images/householditems.png

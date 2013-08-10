@@ -2,6 +2,29 @@
 <!DOCTYPE TS>
 <TS version="2.0">
 <context>
+    <name>ReportDB</name>
+    <message>
+        <source>Record created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create record error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error reading from database: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>main</name>
     <message>
         <source>New Energy Report</source>
