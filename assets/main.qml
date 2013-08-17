@@ -21,7 +21,7 @@ NavigationPane {
                     text: qsTr("Open Energy Report").toUpperCase()
                     image: "asset:///images/openReport.png"
                     onClicked: {
-                        
+                        promptOpen.clearList();
                         dbobject.outputReportItems(promptOpen);
                         promptOpen.show();
                     }
