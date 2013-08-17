@@ -10,6 +10,7 @@ using namespace bb::cascades;
 ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
         QObject(app)
 {
+	m_reportDB = new ReportDB();
     // prepare the localization
     m_pTranslator = new QTranslator(this);
     m_pLocaleHandler = new LocaleHandler(this);
@@ -25,7 +26,8 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     // to ensure the document gets destroyed properly at shut down.
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
 
-    qml->setContextProperty("app", this);
+    qml->setContextProperty("dbobject", this->m_reportDB);
+    qml->setContextProperty("_app", this);
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 

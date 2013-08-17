@@ -12,11 +12,16 @@
 #include <bb/cascades/GroupDataModel>
 #include <QtSql/QtSql>
 #include <bb/system/SystemDialog>
-#include "Report.h"
+#include <bb/system/SystemListDialog.hpp>
+#include "Report.hpp"
 #include <QDebug>
+#include <QObject>
 
 using namespace bb::cascades;
 using namespace bb::system;
+
+#define DBPATH "./data/reportDatabase.db"
+#define DBASSETPATH "./app/native/assets/db/reports.db"
 
 class ReportDB: public QObject {
 	Q_OBJECT
@@ -30,14 +35,16 @@ public:
     Q_INVOKABLE void readReports();
     Q_INVOKABLE bool updateReport(const QString &key, const QString &name);
     Q_INVOKABLE bool deleteReport(const QString &key);
+    Q_INVOKABLE void outputReportItems(bb::system::SystemListDialog * outputDialog);
 
 	ReportDB();
 
 private:
-	QSqlDatabase database;
+	QSqlDatabase m_database;
 	bool dbActive();
     void initDataModel();
     bool initDatabase();
+    bool dbInited;
 
     void alert(const QString &message);
 

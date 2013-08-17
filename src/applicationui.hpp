@@ -2,6 +2,7 @@
 #define ApplicationUI_HPP_
 
 #include <QObject>
+#include "ReportDB.hpp"
 
 namespace bb
 {
@@ -26,6 +27,7 @@ class ApplicationUI : public QObject
 public:
     ApplicationUI(bb::cascades::Application *app);
     virtual ~ApplicationUI() { }
+    ReportDB * m_reportDB;
 private slots:
     void onSystemLanguageChanged();
 private:

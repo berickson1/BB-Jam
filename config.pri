@@ -8,8 +8,8 @@ device {
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Report.h) \
-                 $$quote($$BASEDIR/src/ReportDB.h) \
+        HEADERS +=  $$quote($$BASEDIR/src/Report.hpp) \
+                 $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 
@@ -19,8 +19,8 @@ device {
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Report.h) \
-                 $$quote($$BASEDIR/src/ReportDB.h) \
+        HEADERS +=  $$quote($$BASEDIR/src/Report.hpp) \
+                 $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 }
@@ -32,8 +32,8 @@ simulator {
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Report.h) \
-                 $$quote($$BASEDIR/src/ReportDB.h) \
+        HEADERS +=  $$quote($$BASEDIR/src/Report.hpp) \
+                 $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 }
