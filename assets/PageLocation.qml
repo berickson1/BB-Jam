@@ -2,6 +2,7 @@ import bb.cascades 1.0
 Page {
     property bool newReport
     property string name
+    property int id
     Container {
         ListView {
             id: listView

@@ -4,10 +4,6 @@
 <context>
     <name>ReportDB</name>
     <message>
-        <source>Record created</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Create record error: %1</source>
         <translation type="unfinished"></translation>
     </message>

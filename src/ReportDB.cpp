@@ -7,11 +7,11 @@
 
 #include "ReportDB.hpp"
 
-ReportDB::ReportDB(){
+ReportDB::ReportDB() {
 	initDataModel();
 	initDatabase();
 }
-bool ReportDB::createReport(QString const& name) {
+int ReportDB::createReport(QString const& name) {
 	//Ensure database is active
 	if (dbActive()) {
 		QSqlQuery query(m_database);
@@ -20,34 +20,42 @@ bool ReportDB::createReport(QString const& name) {
 		query.exec();
 
 		if (query.exec()) {
-			alert(tr("Record created"));
-			return true;
+			qDebug() << "New Report created";
+			bool isInt;
+			int newID = query.lastInsertId().toInt(&isInt);
+			if (isInt) {
+				return newID;
+			} else {
+				qDebug() << "Invalid Report ID returned";
+				return -1;
+			}
+			return (isInt) ? newID : -1;
 		} else {
 			const QSqlError error = query.lastError();
 			alert(tr("Create record error: %1").arg(error.text()));
-			return false;
+			return -1;
 		}
 	}
-	return false;
+	return -1;
 
 }
 void ReportDB::readReports() {
 
 	QSqlQuery query(m_database);
-	const QString sqlQuery = "SELECT id, name FROM Reports";
+	const QString sqlQuery = "SELECT id, name FROM Reports ORDER BY name";
 
 	if (query.exec(sqlQuery)) {
 
 		const int db_id = query.record().indexOf("id");
 		const int db_name = query.record().indexOf("name");
 
-		m_dataModel->clear();
+		m_reportsDataModel->clear();
 
 		int nRead = 0;
 		while (query.next()) {
 			Report *report = new Report(query.value(db_id).toString(),
 					query.value(db_name).toString());
-			m_dataModel->insert(report);
+			m_reportsDataModel->insert(report);
 			nRead++;
 		}
 		qDebug() << "Read " << nRead << " records from the database";
@@ -59,91 +67,102 @@ void ReportDB::readReports() {
 						query.lastError().text()));
 	}
 }
-void ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog){
-	QSqlQuery query(m_database);
-	const QString sqlQuery = "SELECT id, name FROM Reports";
+void ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
+	readReports();
 
-	if (query.exec(sqlQuery)) {
+	outDialog->clearList();
 
-		const int db_id = query.record().indexOf("id");
-		const int db_name = query.record().indexOf("name");
-
-		int nRead = 0;
-		while (query.next()) {
-			outDialog->appendItem(query.value(db_name).toString());
-			nRead++;
-		}
-		qDebug() << "Read " << nRead << " records from the database";
-
-	} else {
-		//TODO: Handle this more gracefully
-		alert(
-				tr("Error reading from database: %1").arg(
-						query.lastError().text()));
+	int reportCount = m_reportsDataModel->childCount(QVariantList());
+	for (int i = 0; i < reportCount; i++) {
+		Report * r = getReportAtIndex(i);
+		outDialog->appendItem(r->name());
 	}
+
 }
+
+Report * ReportDB::getReportAtIndex(int index) {
+	QVariantList indexPath = QVariantList();
+	int reportCount = m_reportsDataModel->childCount(indexPath);
+	indexPath.append(QVariant(index));
+	QVariant v = m_reportsDataModel->data(indexPath);
+	Report * r = qobject_cast<Report *>(qvariant_cast<QObject *>(v));
+	return r;
+}
+
 bool ReportDB::updateReport(QString const&, QString const&) {
 	//TODO: Implement
 	return false;
 }
+
 bool ReportDB::deleteReport(QString const&) {
 	//TODO: Implement
 	return false;
 }
+
 GroupDataModel* ReportDB::dataModel() const {
-	return m_dataModel;
+	return m_reportsDataModel;
 }
+
 bool ReportDB::dbActive() {
 	//We're done if the connection is active
-	if(m_database.isOpen())
+	if (m_database.isOpen())
 		return true;
 
 	//Re-open database in inited
-	if(dbInited){
+	if (dbInited) {
 		m_database = QSqlDatabase::database();
 		return true;
 	}
 
 	//Init database
 	return initDatabase();
-
 }
 
-bool ReportDB::initDatabase(){
+bool ReportDB::initDatabase() {
 	m_database = QSqlDatabase::addDatabase("QSQLITE");
 
 	//Check if datafile exists
 	QFile dbFile(DBPATH);
 
 	//Ensure file exists, copy from assets if it doesn't
-	if(!dbFile.exists()){
-		alert("File does not exist");
+	if (!dbFile.exists()) {
+		qDebug() << "Database does not exist, creating";
 		QFile dbAssetFile(DBASSETPATH);
-		if (!dbAssetFile.exists()){
-			alert("Error initializing database");
+		if (!dbAssetFile.exists()) {
+			qDebug() << "FATAL ERROR: Database does not exist in assets";
+			return false;
 		}
 		//Ensure directory structure exists
 		QFileInfo fileInfo(dbFile);
 		QDir().mkpath(fileInfo.path());
 
-		if(!dbAssetFile.copy(DBPATH)){
-			alert("Error copying database file");
+		if (!dbAssetFile.copy(DBPATH)) {
+			qDebug() << "FATAL ERROR: Error copying database file";
+			return false;
 		}
 	}
 	//Set up database
 	m_database.setDatabaseName(DBPATH);
 
-	if (!m_database.open()){
-		alert("Error opening database");
+	if (!m_database.open()) {
+		qDebug() << "FATAL ERROR: Error opening database";
 		return false;
 	}
 	return true;
 }
 
-void ReportDB::initDataModel(){
-	m_dataModel = new GroupDataModel(this);
-	m_dataModel->setSortingKeys(QStringList() << "name");
-	m_dataModel->setGrouping(ItemGrouping::None);
+QString ReportDB::getSelectedReportName(int indicies[]) {
+	getReportAtIndex(indicies[0])->name();
+}
+
+int ReportDB::getSelectedReportID(int indicies[]) {
+	getReportAtIndex(indicies[0])->id();
+}
+
+void ReportDB::initDataModel() {
+	m_reportsDataModel = new GroupDataModel(this);
+	m_reportsDataModel->setSortingKeys(QStringList() << "name");
+	m_reportsDataModel->setGrouping(ItemGrouping::None);
 }
 
 // Alert Dialog Box Functions

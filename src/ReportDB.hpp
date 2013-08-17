@@ -31,12 +31,13 @@ class ReportDB: public QObject {
 
 public:
 
-    Q_INVOKABLE bool createReport(const QString &name);
+    Q_INVOKABLE int createReport(const QString &name);
     Q_INVOKABLE void readReports();
     Q_INVOKABLE bool updateReport(const QString &key, const QString &name);
     Q_INVOKABLE bool deleteReport(const QString &key);
     Q_INVOKABLE void outputReportItems(bb::system::SystemListDialog * outputDialog);
-
+    Q_INVOKABLE QString getSelectedReportName(int indicies[]);
+    Q_INVOKABLE int getSelectedReportID(int indicies[]);
 	ReportDB();
 
 private:
@@ -45,6 +46,7 @@ private:
     void initDataModel();
     bool initDatabase();
     bool dbInited;
+    Report * getReportAtIndex(int index);
 
     void alert(const QString &message);
 
@@ -52,7 +54,7 @@ private:
     GroupDataModel* dataModel() const;
 
     // The data shown by the list view.
-    GroupDataModel* m_dataModel;
+    GroupDataModel* m_reportsDataModel;
 };
 
 #endif /* REPORTDB_H_ */

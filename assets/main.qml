@@ -4,6 +4,7 @@ NavigationPane {
     id: nav
     Page {
         Container {
+            
             layout: DockLayout {
 
             }
@@ -45,6 +46,7 @@ NavigationPane {
                     console.log("Report Name: " + inputFieldTextEntry());
                     pageLocation.newReport = true;
                     pageLocation.name = inputFieldTextEntry();
+                    pageLocation.id = dbobject.createReport(inputFieldTextEntry());
                     nav.push(pageLocation);
                 } else {
                     console.log("Prompt Closed");
@@ -60,8 +62,8 @@ NavigationPane {
                 if (result == SystemUiResult.ConfirmButtonSelection){
                     console.log("Report Name Index: " + selectedIndices)
                     pageLocation.newReport = false;
-                    //TODO: Wireup name passthrough
-                    pageLocation.name = "";
+                    pageLocation.name = dbobject.getSelectedReportName(selectedIndices);
+                    pageLocation.id = dbobject.getSelectedReportID(selectedIndices);
                     nav.push(pageLocation);
                 }
                 

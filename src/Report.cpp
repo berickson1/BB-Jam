@@ -5,7 +5,7 @@
  *      Author: Brent.Erickson
  */
 
-#include "Report.h"
+#include "Report.hpp"
 
 Report::Report(const QString &id, const QString &name, QObject *parent) :QObject(parent), m_id(id), m_name(name){
 }
