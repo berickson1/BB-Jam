@@ -3,10 +3,17 @@ Page {
     property bool newReport
     property string name
     property int id
+    titleBar: TitleBar {
+        id: titlebar
+        title: name;
+    }
     Container {
         ListView {
             id: listView
-            dataModel: dbobject.dataModel()
+            dataModel: XmlDataModel {
+                id: listModel
+                source: "data.xml"
+            }
             listItemComponents: [
                 ListItemComponent {
                     type: "header"
