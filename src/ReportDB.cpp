@@ -11,6 +11,8 @@ ReportDB::ReportDB() {
 	initDataModel();
 	initDatabase();
 }
+
+//Create New Report in Database
 int ReportDB::createReport(QString const& name) {
 	//Ensure database is active
 	if (dbActive()) {
@@ -38,6 +40,8 @@ int ReportDB::createReport(QString const& name) {
 	return -1;
 
 }
+
+//Read all reports from Database into datamodel
 void ReportDB::readReports() {
 
 	QSqlQuery query(m_database);
@@ -67,6 +71,8 @@ void ReportDB::readReports() {
 						query.lastError().text()));
 	}
 }
+
+//Output reports from datamodel into SystemListDialog
 void ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
 	readReports();
 
@@ -80,6 +86,7 @@ void ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
 
 }
 
+//Retrieve report at index from datamodel
 Report * ReportDB::getReportAtIndex(int index) {
 	QVariantList indexPath = QVariantList();
 	indexPath.append(QVariant(index));
@@ -88,20 +95,24 @@ Report * ReportDB::getReportAtIndex(int index) {
 	return r;
 }
 
+//Update Report in datamodel and database
 bool ReportDB::updateReport(QString const&, QString const&) {
 	//TODO: Implement
 	return false;
 }
 
+//Delete Report from datamodel and database
 bool ReportDB::deleteReport(QString const&) {
 	//TODO: Implement
 	return false;
 }
 
+//Retrieve DataModel
 GroupDataModel* ReportDB::dataModel() const {
 	return m_reportsDataModel;
 }
 
+//Check if database connection is active, re-initiate it if it isn't active
 bool ReportDB::dbActive() {
 	//We're done if the connection is active
 	if (m_database.isOpen())
@@ -117,6 +128,7 @@ bool ReportDB::dbActive() {
 	return initDatabase();
 }
 
+//Initiate database connection
 bool ReportDB::initDatabase() {
 	m_database = QSqlDatabase::addDatabase("QSQLITE");
 
@@ -150,21 +162,24 @@ bool ReportDB::initDatabase() {
 	return true;
 }
 
+//Returns report name for report at index
 QString ReportDB::getSelectedReportName(int index) {
 	return getReportAtIndex(index)->name();
 }
 
+//Returns report id for report at index
 int ReportDB::getSelectedReportID(int index) {
 	return getReportAtIndex(index)->id();
 }
 
+//Initiates the Report datamodel
 void ReportDB::initDataModel() {
 	m_reportsDataModel = new GroupDataModel(this);
 	m_reportsDataModel->setSortingKeys(QStringList() << "name");
 	m_reportsDataModel->setGrouping(ItemGrouping::None);
 }
 
-// Alert Dialog Box Functions
+//Alert Dialog Box Functions
 void ReportDB::alert(const QString &message) {
 	SystemDialog *dialog;
 	dialog = new SystemDialog(tr("OK"), 0);

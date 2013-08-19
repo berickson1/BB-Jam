@@ -6,10 +6,7 @@ Page {
     Container {
         ListView {
             id: listView
-            dataModel: XmlDataModel {
-                id: listModel
-                source: "data.xml"
-            }
+            dataModel: dbobject.dataModel()
             listItemComponents: [
                 ListItemComponent {
                     type: "header"
