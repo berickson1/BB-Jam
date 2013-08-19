@@ -15,20 +15,20 @@ class Location: public QObject {
 	Q_OBJECT
 
 	// These are the properties that will be accessible by the datamodel in the view.
-	Q_PROPERTY(QString id READ id FINAL)
+	Q_PROPERTY(int id READ id FINAL)
 	Q_PROPERTY(QString name READ name FINAL)
 	Q_PROPERTY(QString image READ image FINAL)
 
 public:
 	Location(QObject *parent = 0);
-	Location(const QString &id, const QString &name, const QString &image,QObject *parent = 0);
+	Location(const int &id, const QString &name, const QString &image,QObject *parent = 0);
 
-	QString id() const;
+	int id() const;
 	QString name() const;
 	QString image() const;
 
 private:
-	QString m_id;
+	int m_id;
 	QString m_name;
 	QString m_image;
 };

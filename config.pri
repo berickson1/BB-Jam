@@ -3,23 +3,31 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/Report.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
+                 $$quote($$BASEDIR/src/Location.cpp) \
+                 $$quote($$BASEDIR/src/Report.cpp) \
                  $$quote($$BASEDIR/src/ReportDB.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Report.hpp) \
+        HEADERS +=  $$quote($$BASEDIR/src/Item.hpp) \
+                 $$quote($$BASEDIR/src/Location.hpp) \
+                 $$quote($$BASEDIR/src/Report.hpp) \
                  $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
 
     CONFIG(release, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/Report.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
+                 $$quote($$BASEDIR/src/Location.cpp) \
+                 $$quote($$BASEDIR/src/Report.cpp) \
                  $$quote($$BASEDIR/src/ReportDB.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Report.hpp) \
+        HEADERS +=  $$quote($$BASEDIR/src/Item.hpp) \
+                 $$quote($$BASEDIR/src/Location.hpp) \
+                 $$quote($$BASEDIR/src/Report.hpp) \
                  $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }
@@ -27,12 +35,16 @@ device {
 
 simulator {
     CONFIG(debug, debug|release) {
-        SOURCES +=  $$quote($$BASEDIR/src/Report.cpp) \
+        SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
+                 $$quote($$BASEDIR/src/Location.cpp) \
+                 $$quote($$BASEDIR/src/Report.cpp) \
                  $$quote($$BASEDIR/src/ReportDB.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
                  $$quote($$BASEDIR/src/main.cpp)
 
-        HEADERS +=  $$quote($$BASEDIR/src/Report.hpp) \
+        HEADERS +=  $$quote($$BASEDIR/src/Item.hpp) \
+                 $$quote($$BASEDIR/src/Location.hpp) \
+                 $$quote($$BASEDIR/src/Report.hpp) \
                  $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
     }

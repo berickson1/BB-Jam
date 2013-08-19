@@ -15,14 +15,14 @@ class Report: public QObject {
 	Q_OBJECT
 
 	// These are the properties that will be accessible by the datamodel in the view.
-	Q_PROPERTY(QString id READ id FINAL)
+	Q_PROPERTY(int id READ id FINAL)
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged FINAL)
 
 public:
 	Report(QObject *parent = 0);
-	Report(const QString &id, const QString &name, QObject *parent = 0);
+	Report(const int &id, const QString &name, QObject *parent = 0);
 
-	QString id() const;
+	int id() const;
 	QString name() const;
 
 	void setName(const QString &newName);
@@ -31,7 +31,7 @@ public:
 	void nameChanged(const QString &firstName);
 
 private:
-	QString m_id;
+	int m_id;
 	QString m_name;
 };
 Q_DECLARE_METATYPE(Report *);

@@ -36,8 +36,8 @@ public:
     Q_INVOKABLE bool updateReport(const QString &key, const QString &name);
     Q_INVOKABLE bool deleteReport(const QString &key);
     Q_INVOKABLE void outputReportItems(bb::system::SystemListDialog * outputDialog);
-    Q_INVOKABLE QString getSelectedReportName(int indicies[]);
-    Q_INVOKABLE int getSelectedReportID(int indicies[]);
+    Q_INVOKABLE QString getSelectedReportName(int index);
+    Q_INVOKABLE int getSelectedReportID(int index);
 	ReportDB();
 
 private:

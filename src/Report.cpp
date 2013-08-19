@@ -7,13 +7,13 @@
 
 #include "Report.hpp"
 
-Report::Report(const QString &id, const QString &name, QObject *parent) :QObject(parent), m_id(id), m_name(name){
+Report::Report(const int &id, const QString &name, QObject *parent) :QObject(parent), m_id(id), m_name(name){
 }
 
 Report::Report(QObject *parent) :QObject(parent){
 }
 
-QString Report::id() const
+int Report::id() const
 {
 	return m_id;
 }

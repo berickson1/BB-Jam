@@ -62,8 +62,8 @@ NavigationPane {
                 if (result == SystemUiResult.ConfirmButtonSelection){
                     console.log("Report Name Index: " + selectedIndices)
                     pageLocation.newReport = false;
-                    pageLocation.name = dbobject.getSelectedReportName(selectedIndices);
-                    pageLocation.id = dbobject.getSelectedReportID(selectedIndices);
+                    pageLocation.name = dbobject.getSelectedReportName(selectedIndices[0]);
+                    pageLocation.id = dbobject.getSelectedReportID(selectedIndices[0]);
                     nav.push(pageLocation);
                 }
                 

@@ -15,23 +15,23 @@ class Item: public QObject {
 	Q_OBJECT
 
 	// These are the properties that will be accessible by the datamodel in the view.
-	Q_PROPERTY(QString id READ id FINAL)
-	Q_PROPERTY(QString locationID READ id FINAL)
+	Q_PROPERTY(int id READ id FINAL)
+	Q_PROPERTY(int locationID READ locationID FINAL)
 	Q_PROPERTY(QString name READ name FINAL)
-	Q_PROPERTY(QString value READ image FINAL)
+	Q_PROPERTY(QString value READ value FINAL)
 
 public:
 	Item(QObject *parent = 0);
-	Item(const QString &id, const QString &locationID, const QString &name, const QString &value,QObject *parent = 0);
+	Item(const int &id, const int &locationID, const QString &name, const QString &value,QObject *parent = 0);
 
-	QString id() const;
-	QString locationID() const;
+	int id() const;
+	int locationID() const;
 	QString name() const;
 	QString value() const;
 
 private:
-	QString m_id;
-	QString m_locationID;
+	int m_id;
+	int m_locationID;
 	QString m_name;
 	QString m_value;
 };

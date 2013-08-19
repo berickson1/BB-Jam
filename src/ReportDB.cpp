@@ -17,7 +17,6 @@ int ReportDB::createReport(QString const& name) {
 		QSqlQuery query(m_database);
 		query.prepare("INSERT INTO Reports (name) VALUES(:name)");
 		query.bindValue(":name", name);
-		query.exec();
 
 		if (query.exec()) {
 			qDebug() << "New Report created";
@@ -52,8 +51,9 @@ void ReportDB::readReports() {
 		m_reportsDataModel->clear();
 
 		int nRead = 0;
+		bool ok;
 		while (query.next()) {
-			Report *report = new Report(query.value(db_id).toString(),
+			Report *report = new Report(query.value(db_id).toInt(&ok),
 					query.value(db_name).toString());
 			m_reportsDataModel->insert(report);
 			nRead++;
@@ -82,7 +82,6 @@ void ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
 
 Report * ReportDB::getReportAtIndex(int index) {
 	QVariantList indexPath = QVariantList();
-	int reportCount = m_reportsDataModel->childCount(indexPath);
 	indexPath.append(QVariant(index));
 	QVariant v = m_reportsDataModel->data(indexPath);
 	Report * r = qobject_cast<Report *>(qvariant_cast<QObject *>(v));
@@ -151,12 +150,12 @@ bool ReportDB::initDatabase() {
 	return true;
 }
 
-QString ReportDB::getSelectedReportName(int indicies[]) {
-	getReportAtIndex(indicies[0])->name();
+QString ReportDB::getSelectedReportName(int index) {
+	return getReportAtIndex(index)->name();
 }
 
-int ReportDB::getSelectedReportID(int indicies[]) {
-	getReportAtIndex(indicies[0])->id();
+int ReportDB::getSelectedReportID(int index) {
+	return getReportAtIndex(index)->id();
 }
 
 void ReportDB::initDataModel() {
