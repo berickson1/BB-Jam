@@ -28,7 +28,7 @@ Page {
 
                     StandardListItem {
                         title: ListItemData.name
-                        imageSource: "asset:///images/" + ListItemData.image
+                        imageSource: "asset:///" + ListItemData.image
                     }
                 }
             ]
