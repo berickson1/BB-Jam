@@ -8,7 +8,8 @@
 #include "ReportDB.hpp"
 
 ReportDB::ReportDB() {
-	initDataModel();
+	initReportDataModel();
+	initLocationDataModel();
 	initDatabase();
 }
 
@@ -107,9 +108,14 @@ bool ReportDB::deleteReport(QString const&) {
 	return false;
 }
 
-//Retrieve DataModel
-GroupDataModel* ReportDB::dataModel() const {
+//Retrieve Report DataModel
+GroupDataModel* ReportDB::reportDataModel() const {
 	return m_reportsDataModel;
+}
+
+//Retrieve Location DataModel
+GroupDataModel* ReportDB::locationDataModel() const {
+	return m_locationsDataModel;
 }
 
 //Check if database connection is active, re-initiate it if it isn't active
@@ -173,10 +179,17 @@ int ReportDB::getSelectedReportID(int index) {
 }
 
 //Initiates the Report datamodel
-void ReportDB::initDataModel() {
+void ReportDB::initReportDataModel() {
 	m_reportsDataModel = new GroupDataModel(this);
 	m_reportsDataModel->setSortingKeys(QStringList() << "name");
 	m_reportsDataModel->setGrouping(ItemGrouping::None);
+}
+
+//Initiates the Location datamodel
+void ReportDB::initLocationDataModel() {
+	m_locationsDataModel = new GroupDataModel(this);
+	m_locationsDataModel->setSortingKeys(QStringList() << "name");
+	m_locationsDataModel->setGrouping(ItemGrouping::None);
 }
 
 //Alert Dialog Box Functions

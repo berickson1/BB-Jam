@@ -27,7 +27,8 @@ class ReportDB: public QObject {
 	Q_OBJECT
 
     // A property that is used by the list view in QML
-    Q_PROPERTY(DataModel* dataModel READ dataModel CONSTANT)
+    Q_PROPERTY(DataModel* reportDataModel READ reportDataModel CONSTANT)
+	Q_PROPERTY(DataModel* locationDataModel READ locationDataModel CONSTANT)
 
 public:
 
@@ -43,7 +44,8 @@ public:
 private:
 	QSqlDatabase m_database;
 	bool dbActive();
-    void initDataModel();
+    void initReportDataModel();
+    void initLocationDataModel();
     bool initDatabase();
     bool dbInited;
     Report * getReportAtIndex(int index);
@@ -51,10 +53,12 @@ private:
     void alert(const QString &message);
 
     // The getter method for the property
-    GroupDataModel* dataModel() const;
+    GroupDataModel* reportDataModel() const;
+    GroupDataModel* locationDataModel() const;
 
     // The data shown by the list view.
     GroupDataModel* m_reportsDataModel;
+    GroupDataModel* m_locationsDataModel;
 };
 
 #endif /* REPORTDB_H_ */
