@@ -53,5 +53,32 @@ Page {
             source: "ItemPage.qml"
         }
     ]
+    actions: [
+        ActionItem {
+            title: "Save"
+            ActionBar.placement: ActionBarPlacement.OnBar
+            imageSource: "asset:///images/save.png"
+
+        },
+        ActionItem {
+                    title: "Results"
+                    ActionBar.placement: ActionBarPlacement.OnBar
+                    imageSource: "asset:///images/pie.png"
+
+        },
+        ActionItem {
+            title: "Share"
+            ActionBar.placement: ActionBarPlacement.InOverflow
+            imageSource: "asset:///images/share.png"
+
+        },
+        ActionItem {
+            title: "Settings"
+            ActionBar.placement: ActionBarPlacement.InOverflow
+            imageSource: "asset:///images/settings.png"
+
+        }
+    ]
+    
 }
 
