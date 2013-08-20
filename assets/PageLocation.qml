@@ -76,7 +76,26 @@ Page {
             title: "Settings"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/settings.png"
-
+        },
+        ActionItem {
+                    title: "Save As"
+                    ActionBar.placement: ActionBarPlacement.InOverflow
+                    imageSource: "asset:///images/saveas.png"
+        },
+        ActionItem {
+            title: "Edit"
+            ActionBar.placement: ActionBarPlacement.InOverflow
+            imageSource: "asset:///images/edit.png"
+        },
+        ActionItem {
+            title: "Copy"
+            ActionBar.placement: ActionBarPlacement.InOverflow
+            imageSource: "asset:///images/copy.png"
+        },
+        ActionItem {
+            title: "Delete"
+            ActionBar.placement: ActionBarPlacement.InOverflow
+            imageSource: "asset:///images/delete.png"
         }
     ]
     
