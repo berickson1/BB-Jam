@@ -10,10 +10,7 @@ Page {
     Container {
         ListView {
             id: listView
-            dataModel: XmlDataModel {
-                id: listModel
-                source: "data.xml"
-            }
+            dataModel: qt_dbobject.locationDataModel
             listItemComponents: [
                 ListItemComponent {
                     type: "header"
@@ -106,4 +103,3 @@ Page {
     ]
     
 }
-

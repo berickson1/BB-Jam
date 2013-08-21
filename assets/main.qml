@@ -1,6 +1,7 @@
 import bb.cascades 1.0
 import bb.system 1.0
 NavigationPane {
+    property variant qt_dbobject
     id: nav
     Page {
         Container {
@@ -71,4 +72,7 @@ NavigationPane {
             
         }
     ]
+    onCreationCompleted: {
+        qt_dbobject = dbobject;
+    }
 }

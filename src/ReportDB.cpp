@@ -8,9 +8,9 @@
 #include "ReportDB.hpp"
 
 ReportDB::ReportDB() {
+	initDatabase();
 	initReportDataModel();
 	initLocationDataModel();
-	initDatabase();
 }
 
 //Create New Report in Database
@@ -64,6 +64,38 @@ void ReportDB::readReports() {
 			nRead++;
 		}
 		qDebug() << "Read " << nRead << " records from the database";
+
+	} else {
+		//TODO: Handle this more gracefully
+		alert(
+				tr("Error reading from database: %1").arg(
+						query.lastError().text()));
+	}
+}
+
+//Read all reports from Database into datamodel
+void ReportDB::readLocations() {
+
+	QSqlQuery query(m_database);
+	const QString sqlQuery = "SELECT id, name, image FROM Locations ORDER BY name";
+
+	if (query.exec(sqlQuery)) {
+
+		const int db_id = query.record().indexOf("id");
+		const int db_name = query.record().indexOf("name");
+		const int db_image = query.record().indexOf("image");
+
+		m_locationsDataModel->clear();
+
+		int nRead = 0;
+		bool ok;
+		while (query.next()) {
+			Location *location = new Location(query.value(db_id).toInt(&ok),
+					query.value(db_name).toString(), query.value(db_image).toString());
+			m_locationsDataModel->insert(location);
+			nRead++;
+		}
+		qDebug() << "Read " << nRead << " records from the database, locations table";
 
 	} else {
 		//TODO: Handle this more gracefully
@@ -190,6 +222,7 @@ void ReportDB::initLocationDataModel() {
 	m_locationsDataModel = new GroupDataModel(this);
 	m_locationsDataModel->setSortingKeys(QStringList() << "name");
 	m_locationsDataModel->setGrouping(ItemGrouping::None);
+	readLocations();
 }
 
 //Alert Dialog Box Functions
