@@ -15,7 +15,7 @@ class Report: public QObject {
 	Q_OBJECT
 
 	// These are the properties that will be accessible by the datamodel in the view.
-	Q_PROPERTY(int id READ id FINAL)
+	Q_PROPERTY(int id READ id FINAL CONSTANT)
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged FINAL)
 
 public:
