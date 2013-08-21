@@ -36,6 +36,9 @@ NavigationPane {
         PageLocation {
             id: pageLocation
         },
+        PageItem {
+            id: pageItems
+        },
         SystemPrompt{
             id: promptNew
             title: qsTr("New Energy Report Name")

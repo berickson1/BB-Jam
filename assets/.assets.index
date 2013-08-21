@@ -17,9 +17,9 @@ images/saveas.png
 images/search.png
 images/settings.png
 images/share.png
-ItemPage.qml
 itemPicker.xml
 main.qml
+PageItem.qml
 PageLocation.qml
 VisualStyle.bright/coal.png
 VisualStyle.bright/computer.png

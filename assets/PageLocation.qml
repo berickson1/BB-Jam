@@ -30,26 +30,14 @@ Page {
                 }
             ]
             onTriggered: {
-
-                if (indexPath.length > 1) {
-                    var chosenItem = dataModel.data(indexPath);
-                    var contentpage = itemPageDefinition.createObject();
-                    
-                    contentpage.listView.rootIndexPath = indexPath;
-                    contentpage.itemPageTitle = chosenItem.name
-                    
-                    nav.push(contentpage);
-                }
+                var chosenItem = dataModel.data(indexPath);
+                qt_dbobject.readItemsByLocationId(chosenItem.id)
+                pageItems.itemPageTitle = chosenItem.name;
+                nav.push(pageItems);
             }
         }
 
     }
-    attachedObjects: [
-        ComponentDefinition {
-            id: itemPageDefinition
-            source: "ItemPage.qml"
-        }
-    ]
     actions: [
         ActionItem {
             title: "Save"

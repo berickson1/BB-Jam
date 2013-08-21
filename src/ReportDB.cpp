@@ -11,6 +11,7 @@ ReportDB::ReportDB() {
 	initDatabase();
 	initReportDataModel();
 	initLocationDataModel();
+	initItemDataModel();
 }
 
 //Create New Report in Database
@@ -105,6 +106,40 @@ void ReportDB::readLocations() {
 	}
 }
 
+//Read items from Database by location ID into datamodel
+void ReportDB::readItemsByLocationId(int locationID) {
+
+	QSqlQuery query(m_database);
+	const QString sqlQuery = "SELECT id, locationID, name, value FROM Items Where locationID = :locationID ORDER BY name";
+
+	query.prepare(sqlQuery);
+	query.bindValue("locationID", locationID);
+	if (query.exec()) {
+
+		const int db_id = query.record().indexOf("id");
+		const int db_locationID = query.record().indexOf("locationID");
+		const int db_name = query.record().indexOf("name");
+		const int db_value = query.record().indexOf("value");
+
+		m_itemsDataModel->clear();
+
+		int nRead = 0;
+		bool ok;
+		while (query.next()) {
+			Item *item = new Item(query.value(db_id).toInt(&ok), query.value(db_locationID).toInt(&ok),
+					query.value(db_name).toString(), query.value(db_value).toInt(&ok));
+			m_itemsDataModel->insert(item);
+			nRead++;
+		}
+		qDebug() << "Read " << nRead << " records from the database";
+
+	} else {
+		//TODO: Handle this more gracefully
+		alert(
+				tr("Error reading from database: %1").arg(
+						query.lastError().text()));
+	}
+}
 //Output reports from datamodel into SystemListDialog
 void ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
 	readReports();
@@ -150,6 +185,10 @@ GroupDataModel* ReportDB::locationDataModel() const {
 	return m_locationsDataModel;
 }
 
+//Retrieve Location DataModel
+GroupDataModel* ReportDB::itemDataModel() const {
+	return m_itemsDataModel;
+}
 //Check if database connection is active, re-initiate it if it isn't active
 bool ReportDB::dbActive() {
 	//We're done if the connection is active
@@ -223,6 +262,13 @@ void ReportDB::initLocationDataModel() {
 	m_locationsDataModel->setSortingKeys(QStringList() << "name");
 	m_locationsDataModel->setGrouping(ItemGrouping::None);
 	readLocations();
+}
+
+//Initiates the Report datamodel
+void ReportDB::initItemDataModel() {
+	m_itemsDataModel = new GroupDataModel(this);
+	m_itemsDataModel->setSortingKeys(QStringList() << "name");
+	m_itemsDataModel->setGrouping(ItemGrouping::None);
 }
 
 //Alert Dialog Box Functions

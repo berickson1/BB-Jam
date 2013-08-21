@@ -15,6 +15,7 @@
 #include <bb/system/SystemListDialog.hpp>
 #include "Report.hpp"
 #include "Location.hpp"
+#include "Item.hpp"
 #include <QDebug>
 #include <QObject>
 
@@ -30,6 +31,7 @@ class ReportDB: public QObject {
     // A property that is used by the list view in QML
     Q_PROPERTY(bb::cascades::DataModel* reportDataModel READ reportDataModel CONSTANT)
 	Q_PROPERTY(bb::cascades::DataModel* locationDataModel READ locationDataModel CONSTANT)
+	Q_PROPERTY(bb::cascades::DataModel* itemDataModel READ itemDataModel CONSTANT)
 
 public:
 
@@ -41,6 +43,7 @@ public:
     Q_INVOKABLE QString getSelectedReportName(int index);
     Q_INVOKABLE int getSelectedReportID(int index);
     Q_INVOKABLE void readLocations();
+    Q_INVOKABLE void readItemsByLocationId(int locationID);
 	ReportDB();
 
 private:
@@ -48,6 +51,7 @@ private:
 	bool dbActive();
     void initReportDataModel();
     void initLocationDataModel();
+    void initItemDataModel();
     bool initDatabase();
     bool dbInited;
     Report * getReportAtIndex(int index);
@@ -57,10 +61,12 @@ private:
     // The getter method for the property
     bb::cascades::GroupDataModel* reportDataModel() const;
     bb::cascades::GroupDataModel* locationDataModel() const;
+    bb::cascades::GroupDataModel* itemDataModel() const;
 
     // The data shown by the list view.
     GroupDataModel* m_reportsDataModel;
     GroupDataModel* m_locationsDataModel;
+    GroupDataModel* m_itemsDataModel;
 };
 
 #endif /* REPORTDB_H_ */
