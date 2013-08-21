@@ -15,7 +15,7 @@ Page {
 
                     Picker {
                         function updateEnergy(qty, hrs, months){
-                            console.log(ListItemData.value * qty * hrs * months / 12 / 1000)
+                            console.log("New calculated Value: " + ListItemData.value * qty * hrs * months / 12 / 1000)
                             picker.description = parseFloat(ListItemData.value * qty * hrs * 365 * months / 12 / 1000).toFixed(2) + "kWh"
                         }
                         id: picker
