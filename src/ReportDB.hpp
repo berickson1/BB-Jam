@@ -43,7 +43,8 @@ public:
     Q_INVOKABLE QString getSelectedReportName(int index);
     Q_INVOKABLE int getSelectedReportID(int index);
     Q_INVOKABLE void readLocations();
-    Q_INVOKABLE void readItemsByLocationId(int locationID);
+    Q_INVOKABLE void readItemsByLocationID_ReportID(int locationID, int ReportID);
+    Q_INVOKABLE void updateItemValues(Item * newItem);
 	ReportDB();
 
 private:

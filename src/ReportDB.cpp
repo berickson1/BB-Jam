@@ -107,13 +107,16 @@ void ReportDB::readLocations() {
 }
 
 //Read items from Database by location ID into datamodel
-void ReportDB::readItemsByLocationId(int locationID) {
+void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 
 	QSqlQuery query(m_database);
+	QSqlQuery reportQuery(m_database);
 	const QString sqlQuery = "SELECT id, locationID, name, value FROM Items Where locationID = :locationID ORDER BY name";
-
+	const QString sqlReportQuery = "SELECT quantityID, durationID, monthID FROM ReportData Where reportID = :reportID and itemID = :itemID";
 	query.prepare(sqlQuery);
 	query.bindValue("locationID", locationID);
+	reportQuery.prepare(sqlReportQuery);
+	reportQuery.bindValue("reportID", reportID);
 	if (query.exec()) {
 
 		const int db_id = query.record().indexOf("id");
@@ -124,10 +127,21 @@ void ReportDB::readItemsByLocationId(int locationID) {
 		m_itemsDataModel->clear();
 
 		int nRead = 0;
-		bool ok;
 		while (query.next()) {
-			Item *item = new Item(query.value(db_id).toInt(&ok), query.value(db_locationID).toInt(&ok),
-					query.value(db_name).toString(), query.value(db_value).toInt(&ok));
+			//Get saved value, if exists
+			int quantityID, durationID, monthID;
+			quantityID = durationID = monthID = 0;
+			reportQuery.bindValue("itemID", query.value(db_id).toInt());
+			if (reportQuery.exec() && reportQuery.next()) {
+					const int db_quantityID = reportQuery.record().indexOf("quantityID");
+					const int db_durationID = reportQuery.record().indexOf("durationID");
+					const int db_monthID = reportQuery.record().indexOf("monthID");
+					quantityID = reportQuery.value(db_quantityID).toInt();
+					durationID = reportQuery.value(db_durationID).toInt();
+					monthID = reportQuery.value(db_monthID).toInt();
+			}
+			Item *item = new Item(query.value(db_id).toInt(), query.value(db_locationID).toInt(),
+					query.value(db_name).toString(), query.value(db_value).toInt(), quantityID, durationID, monthID);
 			m_itemsDataModel->insert(item);
 			nRead++;
 		}
@@ -173,6 +187,11 @@ bool ReportDB::updateReport(QString const&, QString const&) {
 bool ReportDB::deleteReport(QString const&) {
 	//TODO: Implement
 	return false;
+}
+
+//Update ReportData
+void ReportDB::updateItemValues(Item * newItem){
+	qDebug() << "Updating....";
 }
 
 //Retrieve Report DataModel

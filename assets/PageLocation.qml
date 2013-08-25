@@ -31,7 +31,8 @@ Page {
             ]
             onTriggered: {
                 var chosenItem = dataModel.data(indexPath);
-                qt_dbobject.readItemsByLocationId(chosenItem.id)
+                qt_dbobject.readItemsByLocationID_ReportID(chosenItem.id, id)
+                var pageItems = pageItemsDefinition.createObject();
                 pageItems.itemPageTitle = chosenItem.name;
                 nav.push(pageItems);
             }

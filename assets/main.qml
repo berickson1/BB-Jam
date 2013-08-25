@@ -1,7 +1,7 @@
 import bb.cascades 1.0
 import bb.system 1.0
 NavigationPane {
-    property variant qt_dbobject
+    property variant qt_dbobject    
     id: nav
     Page {
         Container {
@@ -33,11 +33,13 @@ NavigationPane {
     }
 
     attachedObjects: [
-        PageLocation {
-            id: pageLocation
+        ComponentDefinition {
+            id: pageLocationDefinition
+            source: "PageLocation.qml"
         },
-        PageItem {
-            id: pageItems
+        ComponentDefinition {
+            id: pageItemsDefinition
+            source: "PageItem.qml"
         },
         SystemPrompt{
             id: promptNew
@@ -48,6 +50,7 @@ NavigationPane {
             onFinished:{
                 if (result == SystemUiResult.ConfirmButtonSelection){
                     console.log("Report Name: " + inputFieldTextEntry());
+                    var pageLocation = pageLocationDefinition.createObject();
                     pageLocation.newReport = true;
                     pageLocation.name = inputFieldTextEntry();
                     pageLocation.id = dbobject.createReport(inputFieldTextEntry());
@@ -65,6 +68,7 @@ NavigationPane {
             onFinished: {
                 if (result == SystemUiResult.ConfirmButtonSelection){
                     console.log("Report Name Index: " + selectedIndices)
+                    var pageLocation = pageLocationDefinition.createObject();
                     pageLocation.newReport = false;
                     pageLocation.name = dbobject.getSelectedReportName(selectedIndices[0]);
                     pageLocation.id = dbobject.getSelectedReportID(selectedIndices[0]);
@@ -77,5 +81,8 @@ NavigationPane {
     ]
     onCreationCompleted: {
         qt_dbobject = dbobject;
+    }
+    onPopTransitionEnded: {
+        page.destroy();
     }
 }
