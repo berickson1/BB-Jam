@@ -28,31 +28,85 @@ Page {
 
                         pickerItemComponents: [
                             PickerItemComponent {
-                                type: "item1"
-
-                                content: Label {
-                                    text: pickerItemData.text
-                                    verticalAlignment: VerticalAlignment.Center
-                                    horizontalAlignment: HorizontalAlignment.Center
+                                type: "quantity"
+                                content: Container {
+                                    layout: DockLayout {
+                                    }
+                                    Label {
+	                                    text: pickerItemData.text
+	                                    verticalAlignment: VerticalAlignment.Center
+	                                    horizontalAlignment: HorizontalAlignment.Center
+	                                    
+	                                    textStyle {
+	                                        base: SystemDefaults.TextStyles.PrimaryText
+                                            fontSize: FontSize.Small
+	                                    }
+                                    }
+                                    
+                                    Label {
+                                        text: "quantity"
+                                        verticalAlignment: VerticalAlignment.Bottom
+                                        horizontalAlignment: HorizontalAlignment.Center
+                                        
+                                        textStyle {
+                                        base: SystemDefaults.TextStyles.SmallText
+                                        color: Color.Gray
+                                        }
+                                    }
                                 }
                             },
                             PickerItemComponent {
-                                type: "item2"
+                                type: "time"
+                                content: Container {
+                                	layout: DockLayout{
+                                   	}
+	                                Label {
+	                                    text: pickerItemData.text
+	                                    verticalAlignment: VerticalAlignment.Center
+	                                    horizontalAlignment: HorizontalAlignment.Center
 
-                                content: Label {
-                                    text: pickerItemData.text
-                                    verticalAlignment: VerticalAlignment.Center
-                                    horizontalAlignment: HorizontalAlignment.Center
+                                        textStyle {
+	                                        base: SystemDefaults.TextStyles.PrimaryText
+                                            fontSize: FontSize.Small
+                                        }
+	                                }
+                                    Label {
+                                        text: "per day"
+                                        verticalAlignment: VerticalAlignment.Bottom
+                                        horizontalAlignment: HorizontalAlignment.Center
+                                        
+                                        textStyle {
+                                            base: SystemDefaults.TextStyles.SmallText
+                                            color: Color.Gray
+                                        }
+                                    }
                                 }
-
                             },
                             PickerItemComponent {
-                                type: "item3"
-
-                                content: Label {
-                                    text: pickerItemData.text
-                                    verticalAlignment: VerticalAlignment.Center
-                                    horizontalAlignment: HorizontalAlignment.Center
+                                type: "months"
+                                content: Container {
+                                    layout: DockLayout{
+                                    }
+                                    Label {
+                                        text: pickerItemData.text
+                                        verticalAlignment: VerticalAlignment.Center
+                                        horizontalAlignment: HorizontalAlignment.Center
+                                        
+                                        textStyle {
+                                            base: SystemDefaults.TextStyles.PrimaryText
+                                            fontSize: FontSize.Small
+                                        }
+                                    }
+                                    Label {
+                                        text: "per year"
+                                        verticalAlignment: VerticalAlignment.Bottom
+                                        horizontalAlignment: HorizontalAlignment.Center
+                                        
+                                        textStyle {
+                                            base: SystemDefaults.TextStyles.SmallText
+                                            color: Color.Gray
+                                        }
+                                    }
                                 }
                             }
                         ]

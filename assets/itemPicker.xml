@@ -1,354 +1,154 @@
 <model>
-<column>
-<item1 text="x0" value="0" />
-<item1 text="x1" value="1" />
-<item1 text="x2" value="2" />
-<item1 text="x3" value="3" />
-<item1 text="x4" value="4" />
-<item1 text="x5" value="5" />
-<item1 text="x6" value="6" />
-<item1 text="x7" value="7" />
-<item1 text="x8" value="8" />
-<item1 text="x9" value="9" />
-<item1 text="x10" value="10" />
-<item1 text="x11" value="11" />
-<item1 text="x12" value="12" />
-<item1 text="x13" value="13" />
-<item1 text="x14" value="14" />
-<item1 text="x15" value="15" />
-<item1 text="x16" value="16" />
-<item1 text="x17" value="17" />
-<item1 text="x18" value="18" />
-<item1 text="x19" value="19" />
-<item1 text="x20" value="20" />
-<item1 text="x21" value="21" />
-<item1 text="x22" value="22" />
-<item1 text="x23" value="23" />
-<item1 text="x24" value="24" />
-<item1 text="x25" value="25" />
-<item1 text="x26" value="26" />
-<item1 text="x27" value="27" />
-<item1 text="x28" value="28" />
-<item1 text="x29" value="29" />
-<item1 text="x30" value="30" />
-<item1 text="x31" value="31" />
-<item1 text="x32" value="32" />
-<item1 text="x33" value="33" />
-<item1 text="x34" value="34" />
-<item1 text="x35" value="35" />
-<item1 text="x36" value="36" />
-<item1 text="x37" value="37" />
-<item1 text="x38" value="38" />
-<item1 text="x39" value="39" />
-<item1 text="x40" value="40" />
-<item1 text="x41" value="41" />
-<item1 text="x42" value="42" />
-<item1 text="x43" value="43" />
-<item1 text="x44" value="44" />
-<item1 text="x45" value="45" />
-<item1 text="x46" value="46" />
-<item1 text="x47" value="47" />
-<item1 text="x48" value="48" />
-<item1 text="x49" value="49" />
-<item1 text="x50" value="50" />
-<item1 text="x51" value="51" />
-<item1 text="x52" value="52" />
-<item1 text="x53" value="53" />
-<item1 text="x54" value="54" />
-<item1 text="x55" value="55" />
-<item1 text="x56" value="56" />
-<item1 text="x57" value="57" />
-<item1 text="x58" value="58" />
-<item1 text="x59" value="59" />
-<item1 text="x60" value="60" />
-<item1 text="x61" value="61" />
-<item1 text="x62" value="62" />
-<item1 text="x63" value="63" />
-<item1 text="x64" value="64" />
-<item1 text="x65" value="65" />
-<item1 text="x66" value="66" />
-<item1 text="x67" value="67" />
-<item1 text="x68" value="68" />
-<item1 text="x69" value="69" />
-<item1 text="x70" value="70" />
-<item1 text="x71" value="71" />
-<item1 text="x72" value="72" />
-<item1 text="x73" value="73" />
-<item1 text="x74" value="74" />
-<item1 text="x75" value="75" />
-<item1 text="x76" value="76" />
-<item1 text="x77" value="77" />
-<item1 text="x78" value="78" />
-<item1 text="x79" value="79" />
-<item1 text="x80" value="80" />
-<item1 text="x81" value="81" />
-<item1 text="x82" value="82" />
-<item1 text="x83" value="83" />
-<item1 text="x84" value="84" />
-<item1 text="x85" value="85" />
-<item1 text="x86" value="86" />
-<item1 text="x87" value="87" />
-<item1 text="x88" value="88" />
-<item1 text="x89" value="89" />
-<item1 text="x90" value="90" />
-<item1 text="x91" value="91" />
-<item1 text="x92" value="92" />
-<item1 text="x93" value="93" />
-<item1 text="x94" value="94" />
-<item1 text="x95" value="95" />
-<item1 text="x96" value="96" />
-<item1 text="x97" value="97" />
-<item1 text="x98" value="98" />
-<item1 text="x99" value="99" />
-<item1 text="x100" value="100" />
-<item1 text="x101" value="101" />
-<item1 text="x102" value="102" />
-<item1 text="x103" value="103" />
-<item1 text="x104" value="104" />
-<item1 text="x105" value="105" />
-<item1 text="x106" value="106" />
-<item1 text="x107" value="107" />
-<item1 text="x108" value="108" />
-<item1 text="x109" value="109" />
-<item1 text="x110" value="110" />
-<item1 text="x111" value="111" />
-<item1 text="x112" value="112" />
-<item1 text="x113" value="113" />
-<item1 text="x114" value="114" />
-<item1 text="x115" value="115" />
-<item1 text="x116" value="116" />
-<item1 text="x117" value="117" />
-<item1 text="x118" value="118" />
-<item1 text="x119" value="119" />
-<item1 text="x120" value="120" />
-<item1 text="x121" value="121" />
-<item1 text="x122" value="122" />
-<item1 text="x123" value="123" />
-<item1 text="x124" value="124" />
-<item1 text="x125" value="125" />
-<item1 text="x126" value="126" />
-<item1 text="x127" value="127" />
-<item1 text="x128" value="128" />
-<item1 text="x129" value="129" />
-<item1 text="x130" value="130" />
-<item1 text="x131" value="131" />
-<item1 text="x132" value="132" />
-<item1 text="x133" value="133" />
-<item1 text="x134" value="134" />
-<item1 text="x135" value="135" />
-<item1 text="x136" value="136" />
-<item1 text="x137" value="137" />
-<item1 text="x138" value="138" />
-<item1 text="x139" value="139" />
-<item1 text="x140" value="140" />
-<item1 text="x141" value="141" />
-<item1 text="x142" value="142" />
-<item1 text="x143" value="143" />
-<item1 text="x144" value="144" />
-<item1 text="x145" value="145" />
-<item1 text="x146" value="146" />
-<item1 text="x147" value="147" />
-<item1 text="x148" value="148" />
-<item1 text="x149" value="149" />
-<item1 text="x150" value="150" />
-<item1 text="x151" value="151" />
-<item1 text="x152" value="152" />
-<item1 text="x153" value="153" />
-<item1 text="x154" value="154" />
-<item1 text="x155" value="155" />
-<item1 text="x156" value="156" />
-<item1 text="x157" value="157" />
-<item1 text="x158" value="158" />
-<item1 text="x159" value="159" />
-<item1 text="x160" value="160" />
-<item1 text="x161" value="161" />
-<item1 text="x162" value="162" />
-<item1 text="x163" value="163" />
-<item1 text="x164" value="164" />
-<item1 text="x165" value="165" />
-<item1 text="x166" value="166" />
-<item1 text="x167" value="167" />
-<item1 text="x168" value="168" />
-<item1 text="x169" value="169" />
-<item1 text="x170" value="170" />
-<item1 text="x171" value="171" />
-<item1 text="x172" value="172" />
-<item1 text="x173" value="173" />
-<item1 text="x174" value="174" />
-<item1 text="x175" value="175" />
-<item1 text="x176" value="176" />
-<item1 text="x177" value="177" />
-<item1 text="x178" value="178" />
-<item1 text="x179" value="179" />
-<item1 text="x180" value="180" />
-<item1 text="x181" value="181" />
-<item1 text="x182" value="182" />
-<item1 text="x183" value="183" />
-<item1 text="x184" value="184" />
-<item1 text="x185" value="185" />
-<item1 text="x186" value="186" />
-<item1 text="x187" value="187" />
-<item1 text="x188" value="188" />
-<item1 text="x189" value="189" />
-<item1 text="x190" value="190" />
-<item1 text="x191" value="191" />
-<item1 text="x192" value="192" />
-<item1 text="x193" value="193" />
-<item1 text="x194" value="194" />
-<item1 text="x195" value="195" />
-<item1 text="x196" value="196" />
-<item1 text="x197" value="197" />
-<item1 text="x198" value="198" />
-<item1 text="x199" value="199" />
-<item1 text="x200" value="200" />
-<item1 text="x201" value="201" />
-<item1 text="x202" value="202" />
-<item1 text="x203" value="203" />
-<item1 text="x204" value="204" />
-<item1 text="x205" value="205" />
-<item1 text="x206" value="206" />
-<item1 text="x207" value="207" />
-<item1 text="x208" value="208" />
-<item1 text="x209" value="209" />
-<item1 text="x210" value="210" />
-<item1 text="x211" value="211" />
-<item1 text="x212" value="212" />
-<item1 text="x213" value="213" />
-<item1 text="x214" value="214" />
-<item1 text="x215" value="215" />
-<item1 text="x216" value="216" />
-<item1 text="x217" value="217" />
-<item1 text="x218" value="218" />
-<item1 text="x219" value="219" />
-<item1 text="x220" value="220" />
-<item1 text="x221" value="221" />
-<item1 text="x222" value="222" />
-<item1 text="x223" value="223" />
-<item1 text="x224" value="224" />
-<item1 text="x225" value="225" />
-<item1 text="x226" value="226" />
-<item1 text="x227" value="227" />
-<item1 text="x228" value="228" />
-<item1 text="x229" value="229" />
-<item1 text="x230" value="230" />
-<item1 text="x231" value="231" />
-<item1 text="x232" value="232" />
-<item1 text="x233" value="233" />
-<item1 text="x234" value="234" />
-<item1 text="x235" value="235" />
-<item1 text="x236" value="236" />
-<item1 text="x237" value="237" />
-<item1 text="x238" value="238" />
-<item1 text="x239" value="239" />
-<item1 text="x240" value="240" />
-<item1 text="x241" value="241" />
-<item1 text="x242" value="242" />
-<item1 text="x243" value="243" />
-<item1 text="x244" value="244" />
-<item1 text="x245" value="245" />
-<item1 text="x246" value="246" />
-<item1 text="x247" value="247" />
-<item1 text="x248" value="248" />
-<item1 text="x249" value="249" />
-<item1 text="x250" value="250" />
-<item1 text="x251" value="251" />
-<item1 text="x252" value="252" />
-<item1 text="x253" value="253" />
-<item1 text="x254" value="254" />
-<item1 text="x255" value="255" />
-<item1 text="x256" value="256" />
-<item1 text="x257" value="257" />
-<item1 text="x258" value="258" />
-<item1 text="x259" value="259" />
-<item1 text="x260" value="260" />
-<item1 text="x261" value="261" />
-<item1 text="x262" value="262" />
-<item1 text="x263" value="263" />
-<item1 text="x264" value="264" />
-<item1 text="x265" value="265" />
-<item1 text="x266" value="266" />
-<item1 text="x267" value="267" />
-<item1 text="x268" value="268" />
-<item1 text="x269" value="269" />
-<item1 text="x270" value="270" />
-<item1 text="x271" value="271" />
-<item1 text="x272" value="272" />
-<item1 text="x273" value="273" />
-<item1 text="x274" value="274" />
-<item1 text="x275" value="275" />
-<item1 text="x276" value="276" />
-<item1 text="x277" value="277" />
-<item1 text="x278" value="278" />
-<item1 text="x279" value="279" />
-<item1 text="x280" value="280" />
-<item1 text="x281" value="281" />
-<item1 text="x282" value="282" />
-<item1 text="x283" value="283" />
-<item1 text="x284" value="284" />
-<item1 text="x285" value="285" />
-<item1 text="x286" value="286" />
-<item1 text="x287" value="287" />
-<item1 text="x288" value="288" />
-<item1 text="x289" value="289" />
-<item1 text="x290" value="290" />
-<item1 text="x291" value="291" />
-<item1 text="x292" value="292" />
-<item1 text="x293" value="293" />
-<item1 text="x294" value="294" />
-<item1 text="x295" value="295" />
-<item1 text="x296" value="296" />
-<item1 text="x297" value="297" />
-<item1 text="x298" value="298" />
-<item1 text="x299" value="299" />
-<item1 text="x300" value="300" />
-
-</column>
-<column loop="true" colspan="2">
-<item2 text="0 hours" value="0" />
-<item2 text="15 mins" value="0.25" />
-<item2 text="1/2 hour" value="0.5" />
-<item2 text="3/4 hour" value="0.75" />
-<item2 text="1 hour" value="1" />
-<item2 text="2 hours" value="2" />
-<item2 text="3 hours" value="3" />
-<item2 text="4 hours" value="4" />
-<item2 text="5 hours" value="5" />
-<item2 text="6 hours" value="6" />
-<item2 text="7 hours" value="7" />
-<item2 text="8 hours" value="8" />
-<item2 text="9 hours" value="9" />
-<item2 text="10 hours" value="10" />
-<item2 text="11 hours" value="11" />
-<item2 text="12 hours" value="12" />
-<item2 text="13 hours" value="13" />
-<item2 text="14 hours" value="14" />
-<item2 text="15 hours" value="15" />
-<item2 text="16 hours" value="16" />
-<item2 text="17 hours" value="17" />
-<item2 text="18 hours" value="18" />
-<item2 text="19 hours" value="19" />
-<item2 text="20 hours" value="20" />
-<item2 text="21 hours" value="21" />
-<item2 text="22 hours" value="22" />
-<item2 text="23 hours" value="23" />
-<item2 text="All Day" value="24" />
-</column>
-<column colspan="2">
-<item3 text="Year Round" value="12" />
-<item3 text="Weekly" value="1.714" />
-<item3 text="Bi-Weekly" value="0.857" />
-<item3 text="Week Days" value="8.571" />
-<item3 text="Weekends" value="3.429" />
-<item3 text="1 month" value="1" />
-<item3 text="2 months" value="2" />
-<item3 text="3 months" value="3" />
-<item3 text="4 months" value="4" />
-<item3 text="5 months" value="5" />
-<item3 text="6 months" value="6" />
-<item3 text="7 months" value="7" />
-<item3 text="8 months" value="8" />
-<item3 text="9 months" value="9" />
-<item3 text="10 months" value="10" />
-<item3 text="11 months" value="11" />
-</column>
+	<column>
+		<quantity text="0" value="0" />
+		<quantity text="1" value="1" />
+		<quantity text="2" value="2" />
+		<quantity text="3" value="3" />
+		<quantity text="4" value="4" />
+		<quantity text="5" value="5" />
+		<quantity text="6" value="6" />
+		<quantity text="7" value="7" />
+		<quantity text="8" value="8" />
+		<quantity text="9" value="9" />
+		<quantity text="10" value="10" />
+		<quantity text="11" value="11" />
+		<quantity text="12" value="12" />
+		<quantity text="13" value="13" />
+		<quantity text="14" value="14" />
+		<quantity text="15" value="15" />
+		<quantity text="16" value="16" />
+		<quantity text="17" value="17" />
+		<quantity text="18" value="18" />
+		<quantity text="19" value="19" />
+		<quantity text="20" value="20" />
+		<quantity text="21" value="21" />
+		<quantity text="22" value="22" />
+		<quantity text="23" value="23" />
+		<quantity text="24" value="24" />
+		<quantity text="25" value="25" />
+		<quantity text="26" value="26" />
+		<quantity text="27" value="27" />
+		<quantity text="28" value="28" />
+		<quantity text="29" value="29" />
+		<quantity text="30" value="30" />
+		<quantity text="31" value="31" />
+		<quantity text="32" value="32" />
+		<quantity text="33" value="33" />
+		<quantity text="34" value="34" />
+		<quantity text="35" value="35" />
+		<quantity text="36" value="36" />
+		<quantity text="37" value="37" />
+		<quantity text="38" value="38" />
+		<quantity text="39" value="39" />
+		<quantity text="40" value="40" />
+		<quantity text="41" value="41" />
+		<quantity text="42" value="42" />
+		<quantity text="43" value="43" />
+		<quantity text="44" value="44" />
+		<quantity text="45" value="45" />
+		<quantity text="46" value="46" />
+		<quantity text="47" value="47" />
+		<quantity text="48" value="48" />
+		<quantity text="49" value="49" />
+		<quantity text="50" value="50" />
+		<quantity text="51" value="51" />
+		<quantity text="52" value="52" />
+		<quantity text="53" value="53" />
+		<quantity text="54" value="54" />
+		<quantity text="55" value="55" />
+		<quantity text="56" value="56" />
+		<quantity text="57" value="57" />
+		<quantity text="58" value="58" />
+		<quantity text="59" value="59" />
+		<quantity text="60" value="60" />
+		<quantity text="61" value="61" />
+		<quantity text="62" value="62" />
+		<quantity text="63" value="63" />
+		<quantity text="64" value="64" />
+		<quantity text="65" value="65" />
+		<quantity text="66" value="66" />
+		<quantity text="67" value="67" />
+		<quantity text="68" value="68" />
+		<quantity text="69" value="69" />
+		<quantity text="70" value="70" />
+		<quantity text="71" value="71" />
+		<quantity text="72" value="72" />
+		<quantity text="73" value="73" />
+		<quantity text="74" value="74" />
+		<quantity text="75" value="75" />
+		<quantity text="76" value="76" />
+		<quantity text="77" value="77" />
+		<quantity text="78" value="78" />
+		<quantity text="79" value="79" />
+		<quantity text="80" value="80" />
+		<quantity text="81" value="81" />
+		<quantity text="82" value="82" />
+		<quantity text="83" value="83" />
+		<quantity text="84" value="84" />
+		<quantity text="85" value="85" />
+		<quantity text="86" value="86" />
+		<quantity text="87" value="87" />
+		<quantity text="88" value="88" />
+		<quantity text="89" value="89" />
+		<quantity text="90" value="90" />
+		<quantity text="91" value="91" />
+		<quantity text="92" value="92" />
+		<quantity text="93" value="93" />
+		<quantity text="94" value="94" />
+		<quantity text="95" value="95" />
+		<quantity text="96" value="96" />
+		<quantity text="97" value="97" />
+		<quantity text="98" value="98" />
+		<quantity text="99" value="99" />
+		<quantity text="100" value="100" />
+	</column>
+	
+	<column loop="true" colspan="2">
+		<time text="0 hours" value="0" />
+		<time text="15 mins" value="0.25" />
+		<time text="1/2 hour" value="0.5" />
+		<time text="3/4 hour" value="0.75" />
+		<time text="1 hour" value="1" />
+		<time text="2 hours" value="2" />
+		<time text="3 hours" value="3" />
+		<time text="4 hours" value="4" />
+		<time text="5 hours" value="5" />
+		<time text="6 hours" value="6" />
+		<time text="7 hours" value="7" />
+		<time text="8 hours" value="8" />
+		<time text="9 hours" value="9" />
+		<time text="10 hours" value="10" />
+		<time text="11 hours" value="11" />
+		<time text="12 hours" value="12" />
+		<time text="13 hours" value="13" />
+		<time text="14 hours" value="14" />
+		<time text="15 hours" value="15" />
+		<time text="16 hours" value="16" />
+		<time text="17 hours" value="17" />
+		<time text="18 hours" value="18" />
+		<time text="19 hours" value="19" />
+		<time text="20 hours" value="20" />
+		<time text="21 hours" value="21" />
+		<time text="22 hours" value="22" />
+		<time text="23 hours" value="23" />
+		<time text="All Day" value="24" />
+	</column>
+	<column colspan="2">
+		<months text="Year Round" value="12" />
+		<months text="Weekly" value="1.714" />
+		<months text="Bi-Weekly" value="0.857" />
+		<months text="Week Days" value="8.571" />
+		<months text="Weekends" value="3.429" />
+		<months text="1 month" value="1" />
+		<months text="2 months" value="2" />
+		<months text="3 months" value="3" />
+		<months text="4 months" value="4" />
+		<months text="5 months" value="5" />
+		<months text="6 months" value="6" />
+		<months text="7 months" value="7" />
+		<months text="8 months" value="8" />
+		<months text="9 months" value="9" />
+		<months text="10 months" value="10" />
+		<months text="11 months" value="11" />
+	</column>
 </model>
