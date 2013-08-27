@@ -7,12 +7,11 @@ Page {
     }
     Container {
         ListView {
-            id: listView
+            id: itemListView
             dataModel: qt_dbobject.itemDataModel
             listItemComponents: [
                 ListItemComponent {
                     type: "item"
-
                     Picker {
                         function updateEnergy(qty, hrs, months) {
                             console.log("New calculated Value: " + ListItemData.value * qty * hrs * months / 12 / 1000)
@@ -65,7 +64,7 @@ Page {
 	                            ListItemData.quantityID = index0;
 	                            ListItemData.durationID = index1;
 	                            ListItemData.monthID = index2;
-	                            qt_dbobject.updateItemValues(ListItemData);
+	                            ListItem.view.updateItemValues(ListItemData);
 	                            updateEnergy(dataModel.data([ 0, index0 ]).value, dataModel.data([ 1, index1 ]).value, dataModel.data([ 2, index2 ]).value)
 	                            console.log("Selection: " + index0 + ", " + index1 + ", " + index2);
                         }
@@ -80,7 +79,9 @@ Page {
 
                 }
             ]
-            
+            function updateItemValues(listItemData){
+                //qt_dbobject.updateItemValues(listItemData)
+            }
         }
     }
 }

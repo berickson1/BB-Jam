@@ -46,6 +46,8 @@ public:
     Q_INVOKABLE void readItemsByLocationID_ReportID(int locationID, int ReportID);
     Q_INVOKABLE void updateItemValues(Item * newItem);
 	ReportDB();
+public slots:
+	void handleItemUpdated(Item* newItem);
 
 private:
 	QSqlDatabase m_database;
@@ -55,6 +57,7 @@ private:
     void initItemDataModel();
     bool initDatabase();
     bool dbInited;
+    int m_reportID;
     Report * getReportAtIndex(int index);
 
     void alert(const QString &message);

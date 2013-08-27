@@ -19,13 +19,15 @@ class Item: public QObject {
 	Q_PROPERTY(int locationID READ locationID FINAL CONSTANT)
 	Q_PROPERTY(QString name READ name FINAL CONSTANT)
 	Q_PROPERTY(int value READ value FINAL CONSTANT)
-	Q_PROPERTY(int quantityID READ quantityID WRITE setQuantityID NOTIFY itemChanged FINAL)
-	Q_PROPERTY(int durationID READ durationID WRITE setDurationID NOTIFY itemChanged FINAL)
-	Q_PROPERTY(int monthID READ monthID WRITE setMonthID NOTIFY itemChanged FINAL)
+	Q_PROPERTY(int quantityID READ quantityID WRITE setQuantityID NOTIFY itemUpdated FINAL)
+	Q_PROPERTY(int durationID READ durationID WRITE setDurationID NOTIFY itemUpdated FINAL)
+	Q_PROPERTY(int monthID READ monthID WRITE setMonthID NOTIFY itemUpdated FINAL)
 
 public:
 	Item(QObject *parent = 0);
-	Item(const int &id, const int &locationID, const QString &name, const int &value, const int &quantityID, const int &durationID, const int &monthID, QObject *parent = 0);
+	Item(const int &id, const int &locationID, const QString &name,
+			const int &value, const int &quantityID, const int &durationID,
+			const int &monthID, const bool &dbItemData, QObject *parent = 0);
 
 	int id() const;
 	int locationID() const;
@@ -34,12 +36,14 @@ public:
 	int quantityID() const;
 	int durationID() const;
 	int monthID() const;
+	bool dbItemData() const;
 	void setQuantityID(const int &newQuantityID);
 	void setDurationID(const int &newDurationID);
 	void setMonthID(const int &newMonthID);
+	void setDbItemData(const bool &newDbItemData);
 
-	Q_SIGNALS:
-		void itemChanged(const Item &newItem);
+	signals:
+	void itemUpdated(Item *newItem);
 
 private:
 	int m_id;
@@ -49,6 +53,7 @@ private:
 	int m_quantityID;
 	int m_durationID;
 	int m_monthID;
+	bool m_dbItemData;
 };
 Q_DECLARE_METATYPE(Item *);
 #endif /* ITEM_H_ */

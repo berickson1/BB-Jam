@@ -17,35 +17,39 @@ ReportDB::ReportDB() {
 //Create New Report in Database
 int ReportDB::createReport(QString const& name) {
 	//Ensure database is active
-	if (dbActive()) {
-		QSqlQuery query(m_database);
-		query.prepare("INSERT INTO Reports (name) VALUES(:name)");
-		query.bindValue(":name", name);
+	if (!ReportDB::dbActive()) {
+		qDebug("DB Not active!");
+		return -1;
+	}
+	QSqlQuery query(m_database);
+	query.prepare("INSERT INTO Reports (name) VALUES(:name)");
+	query.bindValue(":name", name);
 
-		if (query.exec()) {
-			qDebug() << "New Report created";
-			bool isInt;
-			int newID = query.lastInsertId().toInt(&isInt);
-			if (isInt) {
-				return newID;
-			} else {
-				qDebug() << "Invalid Report ID returned";
-				return -1;
-			}
-			return (isInt) ? newID : -1;
+	if (query.exec()) {
+		qDebug() << "New Report created";
+		bool isInt;
+		int newID = query.lastInsertId().toInt(&isInt);
+		if (isInt) {
+			return newID;
 		} else {
-			const QSqlError error = query.lastError();
-			alert(tr("Create record error: %1").arg(error.text()));
+			qDebug() << "Invalid Report ID returned";
 			return -1;
 		}
+		return (isInt) ? newID : -1;
+	} else {
+		const QSqlError error = query.lastError();
+		alert(tr("Create record error: %1").arg(error.text()));
+		return -1;
 	}
-	return -1;
 
 }
 
 //Read all reports from Database into datamodel
 void ReportDB::readReports() {
-
+	if (!ReportDB::dbActive()) {
+		qDebug("DB Not active!");
+		return;
+	}
 	QSqlQuery query(m_database);
 	const QString sqlQuery = "SELECT id, name FROM Reports ORDER BY name";
 
@@ -76,9 +80,13 @@ void ReportDB::readReports() {
 
 //Read all reports from Database into datamodel
 void ReportDB::readLocations() {
-
+	if (!ReportDB::dbActive()) {
+		qDebug("DB Not active!");
+		return;
+	}
 	QSqlQuery query(m_database);
-	const QString sqlQuery = "SELECT id, name, image FROM Locations ORDER BY name";
+	const QString sqlQuery =
+			"SELECT id, name, image FROM Locations ORDER BY name";
 
 	if (query.exec(sqlQuery)) {
 
@@ -92,11 +100,13 @@ void ReportDB::readLocations() {
 		bool ok;
 		while (query.next()) {
 			Location *location = new Location(query.value(db_id).toInt(&ok),
-					query.value(db_name).toString(), query.value(db_image).toString());
+					query.value(db_name).toString(),
+					query.value(db_image).toString());
 			m_locationsDataModel->insert(location);
 			nRead++;
 		}
-		qDebug() << "Read " << nRead << " records from the database, locations table";
+		qDebug() << "Read " << nRead
+				<< " records from the database, locations table";
 
 	} else {
 		//TODO: Handle this more gracefully
@@ -108,15 +118,23 @@ void ReportDB::readLocations() {
 
 //Read items from Database by location ID into datamodel
 void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
-
+	if (!ReportDB::dbActive()) {
+		qDebug("DB Not active!");
+		return;
+	}
 	QSqlQuery query(m_database);
 	QSqlQuery reportQuery(m_database);
-	const QString sqlQuery = "SELECT id, locationID, name, value FROM Items Where locationID = :locationID ORDER BY name";
-	const QString sqlReportQuery = "SELECT quantityID, durationID, monthID FROM ReportData Where reportID = :reportID and itemID = :itemID";
+	const QString sqlQuery =
+			"SELECT id, locationID, name, value FROM Items Where locationID = :locationID ORDER BY name";
+	const QString sqlReportQuery =
+			"SELECT quantityID, durationID, monthID FROM ReportData Where reportID = :reportID and itemID = :itemID";
 	query.prepare(sqlQuery);
 	query.bindValue("locationID", locationID);
 	reportQuery.prepare(sqlReportQuery);
 	reportQuery.bindValue("reportID", reportID);
+	//Save Report ID
+	//TODO: Find a better way to do this!
+	m_reportID = reportID;
 	if (query.exec()) {
 
 		const int db_id = query.record().indexOf("id");
@@ -124,24 +142,41 @@ void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 		const int db_name = query.record().indexOf("name");
 		const int db_value = query.record().indexOf("value");
 
+		int quantityID, durationID, monthID;
+		bool dbItemData;
+
 		m_itemsDataModel->clear();
 
 		int nRead = 0;
 		while (query.next()) {
 			//Get saved value, if exists
-			int quantityID, durationID, monthID;
+			dbItemData = false;
 			quantityID = durationID = monthID = 0;
 			reportQuery.bindValue("itemID", query.value(db_id).toInt());
 			if (reportQuery.exec() && reportQuery.next()) {
-					const int db_quantityID = reportQuery.record().indexOf("quantityID");
-					const int db_durationID = reportQuery.record().indexOf("durationID");
-					const int db_monthID = reportQuery.record().indexOf("monthID");
-					quantityID = reportQuery.value(db_quantityID).toInt();
-					durationID = reportQuery.value(db_durationID).toInt();
-					monthID = reportQuery.value(db_monthID).toInt();
+				const int db_quantityID = reportQuery.record().indexOf(
+						"quantityID");
+				const int db_durationID = reportQuery.record().indexOf(
+						"durationID");
+				const int db_monthID = reportQuery.record().indexOf("monthID");
+				quantityID = reportQuery.value(db_quantityID).toInt();
+				durationID = reportQuery.value(db_durationID).toInt();
+				monthID = reportQuery.value(db_monthID).toInt();
+				dbItemData = true;
 			}
-			Item *item = new Item(query.value(db_id).toInt(), query.value(db_locationID).toInt(),
-					query.value(db_name).toString(), query.value(db_value).toInt(), quantityID, durationID, monthID);
+			Item *item = new Item(query.value(db_id).toInt(),
+					query.value(db_locationID).toInt(),
+					query.value(db_name).toString(),
+					query.value(db_value).toInt(), quantityID, durationID,
+					monthID, dbItemData);
+
+			bool res = connect(item, SIGNAL(itemUpdated(Item*)), this,
+					SLOT(handleItemUpdated(Item*)));
+			Q_ASSERT(res);
+
+			// Since the variable is not used in the app, this is added to avoid a
+			// compiler warning.
+			Q_UNUSED(res);
 			m_itemsDataModel->insert(item);
 			nRead++;
 		}
@@ -190,8 +225,63 @@ bool ReportDB::deleteReport(QString const&) {
 }
 
 //Update ReportData
-void ReportDB::updateItemValues(Item * newItem){
-	qDebug() << "Updating....";
+void ReportDB::updateItemValues(Item * newItem) {
+	if (!ReportDB::dbActive()) {
+		qDebug("DB Not active!");
+		return;
+	}
+	if (newItem->dbItemData()) {
+		qDebug() << "Item exists in database. Updating...";
+		QSqlQuery query(m_database);
+		const QString sqlCommand =
+				"UPDATE ReportData SET quantityID = :quantityID, durationID = :durationID, monthID = :monthID"
+						" WHERE reportID = :reportID and itemID = :itemID";
+		query.prepare(sqlCommand);
+
+		query.bindValue(":quantityID", newItem->quantityID());
+		query.bindValue(":durationID", newItem->durationID());
+		query.bindValue(":monthID", newItem->monthID());
+		query.bindValue(":itemID", newItem->id());
+		query.bindValue(":reportID", m_reportID);
+
+		if (query.exec()) {
+			//We *could* have duplicates at this point...update them all
+			if (query.numRowsAffected() > 0) {
+				qDebug() << "Report id=" << newItem->id() << " was updated.";
+			} else {
+				qDebug() << "Error updating Report id=" << newItem->id();
+			}
+		} else {
+			qDebug() << "Error updating:" << query.lastError().text();
+		}
+	} else {
+		qDebug() << "Item does not exist in database. Inserting...";
+		QSqlQuery query(m_database);
+		const QString sqlCommand =
+				"INSERT INTO ReportData (reportID, itemID, quantityID, durationID, monthID)"
+						"VALUES (:reportID, :itemID, :quantityID, :durationID, :monthID)";
+		query.prepare(sqlCommand);
+
+		//TODO: Make sure report ID is valid, it always *should be*, but you never know
+		query.bindValue(":reportID", m_reportID);
+		query.bindValue(":itemID", newItem->id());
+		query.bindValue(":quantityID", newItem->quantityID());
+		query.bindValue(":durationID", newItem->durationID());
+		query.bindValue(":monthID", newItem->monthID());
+
+		//TODO: Handle duplicates, should never happen but stranger things have happened
+		if (query.exec()) {
+			if (query.numRowsAffected() == 1) {
+				qDebug() << "Report item was inserted.";
+				//Store that we have a value in the database!
+				newItem->setDbItemData(true);
+			} else {
+				qDebug() << "Error inserting new item";
+			}
+		} else {
+			qDebug() << "Error updating:" << query.lastError().text();
+		}
+	}
 }
 
 //Retrieve Report DataModel
@@ -283,11 +373,15 @@ void ReportDB::initLocationDataModel() {
 	readLocations();
 }
 
-//Initiates the Report datamodel
+//Initiates the iTEM datamodel
 void ReportDB::initItemDataModel() {
 	m_itemsDataModel = new GroupDataModel(this);
 	m_itemsDataModel->setSortingKeys(QStringList() << "name");
 	m_itemsDataModel->setGrouping(ItemGrouping::None);
+}
+
+void ReportDB::handleItemUpdated(Item* newItem) {
+	updateItemValues(newItem);
 }
 
 //Alert Dialog Box Functions
