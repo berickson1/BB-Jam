@@ -1,9 +1,10 @@
 1
-69
+70
+720x1280/application-cover.png
+720x720/application-cover.png
+application-cover.png
 CustomImageButton.qml
 db/reports.db
-images/application-cover-720.png
-images/application-cover.png
 images/bbm.png
 images/copy.png
 images/delete.png

@@ -151,7 +151,9 @@ NavigationPane {
     }
     onPopTransitionEnded: {
         page.destroy();
-        savedToast.show();
+        if(page.id){
+            savedToast.show();
+        }
     }
     onTopChanged: {
         if(page.id)[
