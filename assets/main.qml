@@ -85,4 +85,9 @@ NavigationPane {
     onPopTransitionEnded: {
         page.destroy();
     }
+    onTopChanged: {
+        if(page.id)[
+        	page.refresh()
+        ]
+    }
 }

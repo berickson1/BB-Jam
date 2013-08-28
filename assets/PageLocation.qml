@@ -1,15 +1,24 @@
 import bb.cascades 1.0
 Page {
+    objectName: locationPage
     property bool newReport
     property string name
     property int id
+    function refresh(){
+    //Bad idea, but it works...for now
+    for(var i = 0; i < listViewLocation.listItemComponents.length; i++){
+    	listViewLocation.select([i],true)
+
+    }
+    listViewLocation.clearSelection()
+    }
     titleBar: TitleBar {
         id: titlebar
         title: name;
     }
     Container {
         ListView {
-            id: listView
+            id: listViewLocation
             dataModel: qt_dbobject.locationDataModel
             function getEnergyUsageByLocationID_ReportID(locationID){
             	return qt_dbobject.getEnergyUsageByLocationID_ReportID(locationID, id)
@@ -21,7 +30,6 @@ Page {
                     Header {
                         title: ListItemData.title
                     }
-
                 },
                 ListItemComponent {
                     type: "item"
@@ -30,6 +38,9 @@ Page {
                         title: ListItemData.name
                         description: ListItem.view.getEnergyUsageByLocationID_ReportID(ListItemData.id)
                         imageSource: "asset:///" + ListItemData.image
+                        ListItem.onSelectionChanged: { 
+                        	setDescription(ListItem.view.getEnergyUsageByLocationID_ReportID(ListItemData.id))
+                        }
                     }
                 }
             ]
@@ -41,7 +52,6 @@ Page {
                 nav.push(pageItems);
             }
         }
-
     }
     actions: [
         ActionItem {

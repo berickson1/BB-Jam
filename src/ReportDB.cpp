@@ -212,7 +212,6 @@ QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID, int report
 	query.bindValue("reportID", reportID);
 
 	if (query.exec()) {
-		qDebug() << query.boundValues();
 		const int db_energy = query.record().indexOf("energy");
 		if (query.next()) {
 			retval = query.value(db_energy).toFloat();
@@ -220,7 +219,6 @@ QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID, int report
 		}
 		qDebug() << "Read record from the database";
 		retString = QString("%1 kWh").arg(retval);
-		qDebug() << "String val" << retString;
 		return retString;
 
 	} else {
