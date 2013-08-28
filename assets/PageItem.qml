@@ -25,6 +25,7 @@ Page {
                             source: "itemPicker.xml"
                         }
                         horizontalAlignment: HorizontalAlignment.Fill
+                        
 
                         pickerItemComponents: [
                             PickerItemComponent {
