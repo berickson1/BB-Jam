@@ -38,7 +38,7 @@ int ReportDB::createReport(QString const& name) {
 		return (isInt) ? newID : -1;
 	} else {
 		const QSqlError error = query.lastError();
-		alert(tr("Create record error: %1").arg(error.text()));
+		qDebug() << "Create record error: " << error.text();
 		return -1;
 	}
 
@@ -72,9 +72,7 @@ void ReportDB::readReports() {
 
 	} else {
 		//TODO: Handle this more gracefully
-		alert(
-				tr("Error reading from database: %1").arg(
-						query.lastError().text()));
+		qDebug() << "Error reading from database: " << query.lastError().text();
 	}
 }
 
@@ -110,9 +108,7 @@ void ReportDB::readLocations() {
 
 	} else {
 		//TODO: Handle this more gracefully
-		alert(
-				tr("Error reading from database: %1").arg(
-						query.lastError().text()));
+		qDebug() << "Error reading from database: " << query.lastError().text();
 	}
 }
 
@@ -127,7 +123,7 @@ void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 	const QString sqlQuery =
 			"SELECT id, locationID, name, value FROM Items Where locationID = :locationID ORDER BY name";
 	const QString sqlReportQuery =
-			"SELECT quantityID, durationID, monthID FROM ReportData Where reportID = :reportID and itemID = :itemID";
+			"SELECT quantityID, durationID, monthID, durationValue, monthValue FROM ReportData Where reportID = :reportID and itemID = :itemID";
 	query.prepare(sqlQuery);
 	query.bindValue("locationID", locationID);
 	reportQuery.prepare(sqlReportQuery);
@@ -143,6 +139,7 @@ void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 		const int db_value = query.record().indexOf("value");
 
 		int quantityID, durationID, monthID;
+		float monthValue, durationValue;
 		bool dbItemData;
 
 		m_itemsDataModel->clear();
@@ -151,7 +148,7 @@ void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 		while (query.next()) {
 			//Get saved value, if exists
 			dbItemData = false;
-			quantityID = durationID = monthID = 0;
+			quantityID = durationID = monthID = monthValue = durationValue = 0;
 			reportQuery.bindValue("itemID", query.value(db_id).toInt());
 			if (reportQuery.exec() && reportQuery.next()) {
 				const int db_quantityID = reportQuery.record().indexOf(
@@ -159,16 +156,21 @@ void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 				const int db_durationID = reportQuery.record().indexOf(
 						"durationID");
 				const int db_monthID = reportQuery.record().indexOf("monthID");
+				const int db_durationValue = reportQuery.record().indexOf(
+						"durationValue");
+				const int db_monthValue = reportQuery.record().indexOf("monthValue");
 				quantityID = reportQuery.value(db_quantityID).toInt();
 				durationID = reportQuery.value(db_durationID).toInt();
 				monthID = reportQuery.value(db_monthID).toInt();
+				durationValue = reportQuery.value(db_durationValue).toFloat();
+				monthValue = reportQuery.value(db_monthValue).toFloat();
 				dbItemData = true;
 			}
 			Item *item = new Item(query.value(db_id).toInt(),
 					query.value(db_locationID).toInt(),
 					query.value(db_name).toString(),
-					query.value(db_value).toInt(), quantityID, durationID,
-					monthID, dbItemData);
+					query.value(db_value).toFloat(), quantityID, durationID,
+					monthID, durationValue, monthValue, dbItemData);
 
 			bool res = connect(item, SIGNAL(itemUpdated(Item*)), this,
 					SLOT(handleItemUpdated(Item*)));
@@ -184,9 +186,48 @@ void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 
 	} else {
 		//TODO: Handle this more gracefully
-		alert(
-				tr("Error reading from database: %1").arg(
-						query.lastError().text()));
+		qDebug() << "Error reading from database: " << query.lastError().text();
+	}
+}
+
+//Get energy usage value for a location in a report
+QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID, int reportID){
+	//parseFloat(ListItemData.value * qty * hrs * 365 * months / 12 / 1000).toFixed(2) + "kWh"
+	QString retString = "";
+	float retval = 0;
+	if (!ReportDB::dbActive()) {
+		qDebug("DB Not active!");
+		return "";
+	}
+	QSqlQuery query(m_database);
+	//SUM(quantityID * durationID * monthID * value)
+	//ListItemData.value * qty * hrs * 365 * months / 12 / 1000
+	const QString sqlQuery =
+			"SELECT SUM(ROUND(365.0 * durationValue * value * quantityID * monthValue / 12.0 / 1000.0, 2)) as energy FROM ReportData AS R "
+					"JOIN Items AS I ON R.itemID = I.id "
+					"WHERE locationID = :locationID AND reportID = :reportID";
+
+	query.prepare(sqlQuery);
+	query.bindValue("locationID", locationID);
+	query.bindValue("reportID", reportID);
+
+	if (query.exec()) {
+		qDebug() << query.boundValues();
+		const int db_energy = query.record().indexOf("energy");
+		if (query.next()) {
+			retval = query.value(db_energy).toFloat();
+			qDebug() << "Retval" << retval;
+		}
+		qDebug() << "Read record from the database";
+		retString = QString("%1 kWh").arg(retval);
+		qDebug() << "String val" << retString;
+		return retString;
+
+	} else {
+		//TODO: Handle this more gracefully
+		qDebug() << "Error reading from database: " << query.lastError().text();
+		retString = QString("");
+		return retString;
 	}
 }
 //Output reports from datamodel into SystemListDialog
@@ -234,13 +275,17 @@ void ReportDB::updateItemValues(Item * newItem) {
 		qDebug() << "Item exists in database. Updating...";
 		QSqlQuery query(m_database);
 		const QString sqlCommand =
-				"UPDATE ReportData SET quantityID = :quantityID, durationID = :durationID, monthID = :monthID"
-						" WHERE reportID = :reportID and itemID = :itemID";
+				"UPDATE ReportData SET quantityID = :quantityID, "
+				"durationID = :durationID, durationValue = :durationValue, "
+				"monthID = :monthID, monthValue = :monthValue "
+				"WHERE reportID = :reportID and itemID = :itemID";
 		query.prepare(sqlCommand);
 
 		query.bindValue(":quantityID", newItem->quantityID());
 		query.bindValue(":durationID", newItem->durationID());
 		query.bindValue(":monthID", newItem->monthID());
+		query.bindValue(":durationValue", newItem->durationValue());
+		query.bindValue(":monthValue", newItem->monthValue());
 		query.bindValue(":itemID", newItem->id());
 		query.bindValue(":reportID", m_reportID);
 
@@ -258,8 +303,8 @@ void ReportDB::updateItemValues(Item * newItem) {
 		qDebug() << "Item does not exist in database. Inserting...";
 		QSqlQuery query(m_database);
 		const QString sqlCommand =
-				"INSERT INTO ReportData (reportID, itemID, quantityID, durationID, monthID)"
-						"VALUES (:reportID, :itemID, :quantityID, :durationID, :monthID)";
+				"INSERT INTO ReportData (reportID, itemID, quantityID, durationID, monthID, durationValue, monthValue)"
+						"VALUES (:reportID, :itemID, :quantityID, :durationID, :monthID, :durationValue, :monthValue)";
 		query.prepare(sqlCommand);
 
 		//TODO: Make sure report ID is valid, it always *should be*, but you never know
@@ -267,7 +312,11 @@ void ReportDB::updateItemValues(Item * newItem) {
 		query.bindValue(":itemID", newItem->id());
 		query.bindValue(":quantityID", newItem->quantityID());
 		query.bindValue(":durationID", newItem->durationID());
+		query.bindValue(":durationValue", newItem->durationValue());
+		query.bindValue(":monthValue", newItem->monthValue());
 		query.bindValue(":monthID", newItem->monthID());
+		query.bindValue(":durationValue", newItem->durationValue());
+		query.bindValue(":monthValue", newItem->monthValue());
 
 		//TODO: Handle duplicates, should never happen but stranger things have happened
 		if (query.exec()) {

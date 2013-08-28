@@ -117,7 +117,9 @@ Page {
 	                            var index2 = picker.selectedIndex(2);
 	                            ListItemData.quantityID = index0;
 	                            ListItemData.durationID = index1;
-	                            ListItemData.monthID = index2;
+                                ListItemData.monthID = index2;
+                                ListItemData.durationValue = dataModel.data([ 1, index1 ]).value;
+                                ListItemData.monthValue = dataModel.data([ 2, index2 ]).value;
 	                            ListItem.view.updateItemValues(ListItemData);
 	                            updateEnergy(dataModel.data([ 0, index0 ]).value, dataModel.data([ 1, index1 ]).value, dataModel.data([ 2, index2 ]).value)
 	                            console.log("Selection: " + index0 + ", " + index1 + ", " + index2);

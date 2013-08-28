@@ -11,6 +11,9 @@ Page {
         ListView {
             id: listView
             dataModel: qt_dbobject.locationDataModel
+            function getEnergyUsageByLocationID_ReportID(locationID){
+            	return qt_dbobject.getEnergyUsageByLocationID_ReportID(locationID, id)
+            }
             listItemComponents: [
                 ListItemComponent {
                     type: "header"
@@ -25,6 +28,7 @@ Page {
 
                     StandardListItem {
                         title: ListItemData.name
+                        description: ListItem.view.getEnergyUsageByLocationID_ReportID(ListItemData.id)
                         imageSource: "asset:///" + ListItemData.image
                     }
                 }

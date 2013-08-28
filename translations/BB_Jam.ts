@@ -4,19 +4,11 @@
 <context>
     <name>ReportDB</name>
     <message>
-        <source>Create record error: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alert</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error reading from database: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

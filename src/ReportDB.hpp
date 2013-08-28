@@ -45,6 +45,7 @@ public:
     Q_INVOKABLE void readLocations();
     Q_INVOKABLE void readItemsByLocationID_ReportID(int locationID, int ReportID);
     Q_INVOKABLE void updateItemValues(Item * newItem);
+    Q_INVOKABLE QString getEnergyUsageByLocationID_ReportID(int locationID, int reportID);
 	ReportDB();
 public slots:
 	void handleItemUpdated(Item* newItem);
