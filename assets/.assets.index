@@ -1,5 +1,5 @@
 1
-63
+66
 CustomImageButton.qml
 db/reports.db
 images/bbm.png
@@ -17,8 +17,11 @@ images/settings.png
 images/share.png
 itemPicker.xml
 main.qml
+PageAbout.qml
+PageHelp.qml
 PageItem.qml
 PageLocation.qml
+PageResults.qml
 VisualStyle.bright/coal.png
 VisualStyle.bright/computer.png
 VisualStyle.bright/day.png

@@ -190,6 +190,28 @@ void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 	}
 }
 
+void ReportDB::copyReport(const QString &reportName) {
+	int newReportID = createReport(reportName);
+
+	qDebug() << "Inserting report values into database";
+	QSqlQuery query(m_database);
+	const QString sqlCommand =
+			"INSERT INTO ReportData (reportID, itemID, quantityID, durationID, monthID, durationValue, monthValue)"
+					"select :newReportID as reportID, itemID, quantityID, durationID, monthID, durationValue, monthValue from ReportData where reportID = :reportID";
+	query.prepare(sqlCommand);
+
+	//TODO: Make sure report ID is valid, it always *should be*, but you never know
+	query.bindValue(":reportID", m_reportID);
+	query.bindValue(":newReportID", newReportID);
+
+	//TODO: Handle duplicates, should never happen but stranger things have happened
+	if (query.exec()) {
+		qDebug() << query.numRowsAffected() << "rows inserted into ReportData";
+	} else {
+		qDebug() << "Error inserting:" << query.lastError().text();
+	}
+}
+
 //Get energy usage value for a location in a report
 QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID, int reportID){
 	//parseFloat(ListItemData.value * qty * hrs * 365 * months / 12 / 1000).toFixed(2) + "kWh"
@@ -228,6 +250,7 @@ QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID, int report
 		return retString;
 	}
 }
+
 //Output reports from datamodel into SystemListDialog
 void ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
 	readReports();

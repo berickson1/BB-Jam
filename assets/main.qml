@@ -3,6 +3,29 @@ import bb.system 1.0
 NavigationPane {
     property variant qt_dbobject    
     id: nav
+    Menu.definition: MenuDefinition {
+        actions: [
+            ActionItem {
+                title: "Help"
+                ActionBar.placement: ActionBarPlacement.InOverflow
+                imageSource: "asset:///images/help.png"
+                onTriggered: {
+                    var pageHelp = pageHelpDefinition.createObject();
+                    nav.push(pageHelp);
+                }
+            },
+            ActionItem {
+                title: "About"
+                ActionBar.placement: ActionBarPlacement.InOverflow
+                //TODO: Add image
+                //imageSource: "asset:///images/about.png"
+                onTriggered: {
+                    var pageAbout = pageAboutDefinition.createObject();
+                    nav.push(pageAbout);
+                }
+            }
+        ]
+    }
     Page {
         Container {
             
@@ -49,6 +72,10 @@ NavigationPane {
             id: pageHelpDefinition
             source: "PageHelp.qml"
         },
+        ComponentDefinition {
+            id: pageResultsDefinition
+            source: "PageResults.qml"
+        },
         SystemPrompt{
             id: promptNew
             title: qsTr("New Energy Report Name")
@@ -63,6 +90,22 @@ NavigationPane {
                     pageLocation.name = inputFieldTextEntry();
                     pageLocation.id = dbobject.createReport(inputFieldTextEntry());
                     nav.push(pageLocation);
+                } else {
+                    console.log("Prompt Closed");
+                }
+            }
+        },
+        SystemPrompt{
+            id: promptSaveAs
+            title: qsTr("Save As")
+            modality: SystemUiModality.Application
+            inputField.inputMode: SystemUiInputMode.Default
+            inputField.emptyText: qsTr("Please enter a Energy Report name...")
+            onFinished:{
+                if (result == SystemUiResult.ConfirmButtonSelection){
+                    console.log("Save As Report Name: " + inputFieldTextEntry());
+                    qt_dbobject.copyReport(inputFieldTextEntry())
+                    nav.pop();
                 } else {
                     console.log("Prompt Closed");
                 }
@@ -85,6 +128,10 @@ NavigationPane {
                 
             }
             
+        },
+        SystemToast {
+            id: savedToast
+            body: "Saved!"
         }
     ]
     onCreationCompleted: {
@@ -92,6 +139,7 @@ NavigationPane {
     }
     onPopTransitionEnded: {
         page.destroy();
+        savedToast.show();
     }
     onTopChanged: {
         if(page.id)[

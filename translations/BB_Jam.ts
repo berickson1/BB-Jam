@@ -30,5 +30,9 @@
         <source>Please enter a Energy Report name...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Save As</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

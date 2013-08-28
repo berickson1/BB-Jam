@@ -6,7 +6,7 @@ Page {
     property int id
     function refresh(){
     //Bad idea, but it works...for now
-    for(var i = 0; i < listViewLocation.listItemComponents.length; i++){
+    for(var i = 0; i < listViewLocation.dataModel.childCount([]); i++){
     	listViewLocation.select([i],true)
 
     }
@@ -58,7 +58,9 @@ Page {
             title: "Save"
             ActionBar.placement: ActionBarPlacement.OnBar
             imageSource: "asset:///images/save.png"
-
+            onTriggered: {
+                savedToast.show()
+            }
         },
         ActionItem {
             title: "Search"
@@ -66,16 +68,19 @@ Page {
             imageSource: "asset:///images/search.png"
         },
         ActionItem {
-                    title: "Results"
-                    ActionBar.placement: ActionBarPlacement.OnBar
-                    imageSource: "asset:///images/pie.png"
+            title: "Results"
+            ActionBar.placement: ActionBarPlacement.OnBar
+            imageSource: "asset:///images/pie.png"
+            onTriggered: {
+                var pageResults = pageResultsDefinition.createObject();
+            	nav.push(pageResults);
+            }
 
         },
         ActionItem {
             title: "Share"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/share.png"
-
         },
         ActionItem {
             title: "Settings"
@@ -83,11 +88,14 @@ Page {
             imageSource: "asset:///images/settings.png"
         },
         ActionItem {
-                    title: "Save As"
-                    ActionBar.placement: ActionBarPlacement.InOverflow
-                    imageSource: "asset:///images/saveas.png"
-        },
-        ActionItem {
+            title: "Save As"
+            ActionBar.placement: ActionBarPlacement.InOverflow
+            imageSource: "asset:///images/saveas.png"
+            onTriggered: {
+                promptSaveAs.show()
+            }
+        }
+        /*ActionItem {
             title: "Edit"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/edit.png"
@@ -101,7 +109,7 @@ Page {
             title: "Delete"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/delete.png"
-        }
+        }*/
         
     ]
     
