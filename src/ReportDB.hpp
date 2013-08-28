@@ -38,7 +38,6 @@ public:
     Q_INVOKABLE int createReport(const QString &name);
     Q_INVOKABLE void readReports();
     Q_INVOKABLE bool updateReport(const QString &key, const QString &name);
-    Q_INVOKABLE bool deleteReport(const QString &key);
     Q_INVOKABLE void outputReportItems(bb::system::SystemListDialog * outputDialog);
     Q_INVOKABLE QString getSelectedReportName(int index);
     Q_INVOKABLE int getSelectedReportID(int index);
@@ -47,6 +46,7 @@ public:
     Q_INVOKABLE void updateItemValues(Item * newItem);
     Q_INVOKABLE QString getEnergyUsageByLocationID_ReportID(int locationID, int reportID);
     Q_INVOKABLE void copyReport(const QString &reportName);
+    Q_INVOKABLE void deleteReport();
 	ReportDB();
 public slots:
 	void handleItemUpdated(Item* newItem);

@@ -94,7 +94,7 @@ Page {
             onTriggered: {
                 promptSaveAs.show()
             }
-        }
+        },
         /*ActionItem {
             title: "Edit"
             ActionBar.placement: ActionBarPlacement.InOverflow
@@ -104,12 +104,15 @@ Page {
             title: "Copy"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/copy.png"
-        },
+        },*/
         ActionItem {
             title: "Delete"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/delete.png"
-        }*/
+            onTriggered: {
+                promptDelete.show();
+            }
+        }
         
     ]
     

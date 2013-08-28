@@ -111,6 +111,18 @@ NavigationPane {
                 }
             }
         },
+        SystemDialog {
+            id: promptDelete
+            title: qsTr("Delete?")
+            body: qsTr("This action will permanently delete this report")
+            modality: SystemUiModality.Application
+            onFinished:{
+                if (result == SystemUiResult.ConfirmButtonSelection){
+                    qt_dbobject.deleteReport()
+                    nav.pop();
+                }
+            }
+        },
         SystemListDialog {
             property bool created: false
             id: promptOpen
@@ -131,7 +143,7 @@ NavigationPane {
         },
         SystemToast {
             id: savedToast
-            body: "Saved!"
+            body: "Changes Saved!"
         }
     ]
     onCreationCompleted: {

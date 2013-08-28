@@ -34,5 +34,13 @@
         <source>Save As</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Delete?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This action will permanently delete this report</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

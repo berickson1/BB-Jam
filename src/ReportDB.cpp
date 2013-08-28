@@ -158,7 +158,8 @@ void ReportDB::readItemsByLocationID_ReportID(int locationID, int reportID) {
 				const int db_monthID = reportQuery.record().indexOf("monthID");
 				const int db_durationValue = reportQuery.record().indexOf(
 						"durationValue");
-				const int db_monthValue = reportQuery.record().indexOf("monthValue");
+				const int db_monthValue = reportQuery.record().indexOf(
+						"monthValue");
 				quantityID = reportQuery.value(db_quantityID).toInt();
 				durationID = reportQuery.value(db_durationID).toInt();
 				monthID = reportQuery.value(db_monthID).toInt();
@@ -212,8 +213,45 @@ void ReportDB::copyReport(const QString &reportName) {
 	}
 }
 
+void ReportDB::deleteReport() {
+	if (!ReportDB::dbActive()) {
+		qDebug("DB Not active!");
+		return;
+	}
+
+	qDebug() << "Deleting report values from database";
+	QSqlQuery query(m_database);
+	const QString sqlCommand =
+			"DELETE FROM ReportData where reportID = :reportID";
+	query.prepare(sqlCommand);
+
+	//TODO: Make sure report ID is valid, it always *should be*, but you never know
+	query.bindValue(":reportID", m_reportID);
+
+	//TODO: Handle duplicates, should never happen but stranger things have happened
+	if (query.exec()) {
+		qDebug() << query.numRowsAffected() << "rows deleted from ReportData";
+	} else {
+		qDebug() << "Error deleting:" << query.lastError().text();
+	}
+	const QString sqlCommand2 = "DELETE FROM Reports where id = :reportID";
+	query.prepare(sqlCommand2);
+
+	//TODO: Make sure report ID is valid, it always *should be*, but you never know
+	query.bindValue(":reportID", m_reportID);
+
+	//TODO: Handle duplicates, should never happen but stranger things have happened
+	if (query.exec()) {
+		qDebug() << query.numRowsAffected() << "rows deleted from Reports";
+	} else {
+		qDebug() << "Error deleting:" << query.lastError().text();
+	}
+}
+
 //Get energy usage value for a location in a report
-QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID, int reportID){
+QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID,
+		int reportID) {
+	m_reportID = reportID;
 	//parseFloat(ListItemData.value * qty * hrs * 365 * months / 12 / 1000).toFixed(2) + "kWh"
 	QString retString = "";
 	float retval = 0;
@@ -280,12 +318,6 @@ bool ReportDB::updateReport(QString const&, QString const&) {
 	return false;
 }
 
-//Delete Report from datamodel and database
-bool ReportDB::deleteReport(QString const&) {
-	//TODO: Implement
-	return false;
-}
-
 //Update ReportData
 void ReportDB::updateItemValues(Item * newItem) {
 	if (!ReportDB::dbActive()) {
@@ -297,9 +329,9 @@ void ReportDB::updateItemValues(Item * newItem) {
 		QSqlQuery query(m_database);
 		const QString sqlCommand =
 				"UPDATE ReportData SET quantityID = :quantityID, "
-				"durationID = :durationID, durationValue = :durationValue, "
-				"monthID = :monthID, monthValue = :monthValue "
-				"WHERE reportID = :reportID and itemID = :itemID";
+						"durationID = :durationID, durationValue = :durationValue, "
+						"monthID = :monthID, monthValue = :monthValue "
+						"WHERE reportID = :reportID and itemID = :itemID";
 		query.prepare(sqlCommand);
 
 		query.bindValue(":quantityID", newItem->quantityID());
