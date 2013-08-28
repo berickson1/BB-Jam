@@ -41,6 +41,14 @@ NavigationPane {
             id: pageItemsDefinition
             source: "PageItem.qml"
         },
+        ComponentDefinition {
+            id: pageAboutDefinition
+            source: "PageAbout.qml"
+        },
+        ComponentDefinition {
+            id: pageHelpDefinition
+            source: "PageHelp.qml"
+        },
         SystemPrompt{
             id: promptNew
             title: qsTr("New Energy Report Name")
