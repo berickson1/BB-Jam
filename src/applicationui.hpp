@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include "ReportDB.hpp"
+#include <bb/cascades/SceneCover>
+#include <bb/cascades/Container>
 
 namespace bb
 {

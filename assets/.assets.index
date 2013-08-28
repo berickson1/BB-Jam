@@ -1,7 +1,9 @@
 1
-66
+69
 CustomImageButton.qml
 db/reports.db
+images/application-cover-720.png
+images/application-cover.png
 images/bbm.png
 images/copy.png
 images/delete.png
@@ -18,6 +20,7 @@ images/share.png
 itemPicker.xml
 main.qml
 PageAbout.qml
+PageActiveFrame.qml
 PageHelp.qml
 PageItem.qml
 PageLocation.qml

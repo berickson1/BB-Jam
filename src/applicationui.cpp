@@ -31,6 +31,19 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
+    //Create ActiveFrame
+    QmlDocument *qmlCover = QmlDocument::create("asset:///PageActiveFrame.qml").parent(
+            this);
+
+    if (!qmlCover->hasErrors()) {
+        // Create the QML Container from using the QMLDocument.
+        Container *coverContainer = qmlCover->createRootObject<Container>();
+
+        // Create a SceneCover and set the application cover
+        SceneCover *sceneCover = SceneCover::create().content(coverContainer);
+        Application::instance()->setCover(sceneCover);
+    }
+
     // Set created root object as the application scene
     app->setScene(root);
 }
