@@ -5,10 +5,7 @@ Page {
     titleBar: TitleBar {
         id: titlebar
     }
-    ScrollView {
-        content: 
             ListView {
-                preferredHeight: 1280
             id: itemListView
             dataModel: qt_dbobject.itemDataModel
             listItemComponents: [
@@ -134,7 +131,8 @@ Page {
                         }
                         onExpandedChanged: {
                             console.log("New selection")
-                            ListItem.selectionChanged(true)
+                            ListItem.view.scrollToItem(ListItem.indexPath,ScrollAnimation.Smooth)
+                            console.log("Scrolled")
                         }
 
                     }
@@ -142,17 +140,16 @@ Page {
                 }
             ]
             onSelectionChanged: {
-                if(selected){
+                //if(selected){
                     console.log("Scroll")
                     itemListView.scrollToItem(indexPath,ScrollAnimation.Smooth)
-                }
+                //}
             }
 
             function updateItemValues(listItemData) {
                 //qt_dbobject.updateItemValues(listItemData)
             }
-        }
-        scrollViewProperties.scrollMode: ScrollMode.Vertical
+
 
     }
 }
