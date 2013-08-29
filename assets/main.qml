@@ -7,7 +7,6 @@ NavigationPane {
         actions: [
             ActionItem {
                 title: "Help"
-                ActionBar.placement: ActionBarPlacement.InOverflow
                 imageSource: "asset:///images/help.png"
                 onTriggered: {
                     var pageHelp = pageHelpDefinition.createObject();
@@ -16,12 +15,18 @@ NavigationPane {
             },
             ActionItem {
                 title: "About"
-                ActionBar.placement: ActionBarPlacement.InOverflow
                 //TODO: Add image
                 //imageSource: "asset:///images/about.png"
                 onTriggered: {
                     var pageAbout = pageAboutDefinition.createObject();
                     nav.push(pageAbout);
+                }
+            },
+            ActionItem {
+                title: "Share App"
+                imageSource: "asset:///images/share.png"
+                onTriggered: {
+                    _app.inviteUserToDownloadViaBBM();
                 }
             }
         ]

@@ -79,14 +79,6 @@ Page {
             }
 
         },
-        ActionItem {
-            title: "Share"
-            ActionBar.placement: ActionBarPlacement.InOverflow
-            imageSource: "asset:///images/share.png"
-            onTriggered: {
-                _app.inviteUserToDownloadViaBBM();
-            }
-        },
         /*ActionItem {
             title: "Settings"
             ActionBar.placement: ActionBarPlacement.InOverflow
