@@ -20,7 +20,6 @@ class Location: public QObject {
 	Q_PROPERTY(QString image READ image FINAL CONSTANT)
 
 public:
-	Location(QObject *parent = 0);
 	Location(const int &id, const QString &name, const QString &image,QObject *parent = 0);
 
 	int id() const;

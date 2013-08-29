@@ -5,8 +5,10 @@ Page {
     titleBar: TitleBar {
         id: titlebar
     }
-    Container {
-        ListView {
+    ScrollView {
+        content: 
+            ListView {
+                preferredHeight: 1280
             id: itemListView
             dataModel: qt_dbobject.itemDataModel
             listItemComponents: [
@@ -25,7 +27,6 @@ Page {
                             source: "itemPicker.xml"
                         }
                         horizontalAlignment: HorizontalAlignment.Fill
-                        
 
                         pickerItemComponents: [
                             PickerItemComponent {
@@ -34,24 +35,24 @@ Page {
                                     layout: DockLayout {
                                     }
                                     Label {
-	                                    text: pickerItemData.text
-	                                    verticalAlignment: VerticalAlignment.Center
-	                                    horizontalAlignment: HorizontalAlignment.Center
-	                                    
-	                                    textStyle {
-	                                        base: SystemDefaults.TextStyles.PrimaryText
+                                        text: pickerItemData.text
+                                        verticalAlignment: VerticalAlignment.Center
+                                        horizontalAlignment: HorizontalAlignment.Center
+
+                                        textStyle {
+                                            base: SystemDefaults.TextStyles.PrimaryText
                                             fontSize: FontSize.Small
-	                                    }
+                                        }
                                     }
-                                    
+
                                     Label {
                                         text: "quantity"
                                         verticalAlignment: VerticalAlignment.Bottom
                                         horizontalAlignment: HorizontalAlignment.Center
-                                        
+
                                         textStyle {
-                                        base: SystemDefaults.TextStyles.SmallText
-                                        color: Color.Gray
+                                            base: SystemDefaults.TextStyles.SmallText
+                                            color: Color.Gray
                                         }
                                     }
                                 }
@@ -59,23 +60,23 @@ Page {
                             PickerItemComponent {
                                 type: "time"
                                 content: Container {
-                                	layout: DockLayout{
-                                   	}
-	                                Label {
-	                                    text: pickerItemData.text
-	                                    verticalAlignment: VerticalAlignment.Center
-	                                    horizontalAlignment: HorizontalAlignment.Center
+                                    layout: DockLayout {
+                                    }
+                                    Label {
+                                        text: pickerItemData.text
+                                        verticalAlignment: VerticalAlignment.Center
+                                        horizontalAlignment: HorizontalAlignment.Center
 
                                         textStyle {
-	                                        base: SystemDefaults.TextStyles.PrimaryText
+                                            base: SystemDefaults.TextStyles.PrimaryText
                                             fontSize: FontSize.Small
                                         }
-	                                }
+                                    }
                                     Label {
                                         text: "per day"
                                         verticalAlignment: VerticalAlignment.Bottom
                                         horizontalAlignment: HorizontalAlignment.Center
-                                        
+
                                         textStyle {
                                             base: SystemDefaults.TextStyles.SmallText
                                             color: Color.Gray
@@ -86,13 +87,13 @@ Page {
                             PickerItemComponent {
                                 type: "months"
                                 content: Container {
-                                    layout: DockLayout{
+                                    layout: DockLayout {
                                     }
                                     Label {
                                         text: pickerItemData.text
                                         verticalAlignment: VerticalAlignment.Center
                                         horizontalAlignment: HorizontalAlignment.Center
-                                        
+
                                         textStyle {
                                             base: SystemDefaults.TextStyles.PrimaryText
                                             fontSize: FontSize.Small
@@ -102,7 +103,7 @@ Page {
                                         text: "per year"
                                         verticalAlignment: VerticalAlignment.Bottom
                                         horizontalAlignment: HorizontalAlignment.Center
-                                        
+
                                         textStyle {
                                             base: SystemDefaults.TextStyles.SmallText
                                             color: Color.Gray
@@ -113,32 +114,45 @@ Page {
                         ]
 
                         onSelectedValueChanged: {
-	                            var index0 = picker.selectedIndex(0);
-	                            var index1 = picker.selectedIndex(1);
-	                            var index2 = picker.selectedIndex(2);
-	                            ListItemData.quantityID = index0;
-	                            ListItemData.durationID = index1;
-                                ListItemData.monthID = index2;
-                                ListItemData.durationValue = dataModel.data([ 1, index1 ]).value;
-                                ListItemData.monthValue = dataModel.data([ 2, index2 ]).value;
-	                            ListItem.view.updateItemValues(ListItemData);
-	                            updateEnergy(dataModel.data([ 0, index0 ]).value, dataModel.data([ 1, index1 ]).value, dataModel.data([ 2, index2 ]).value)
-	                            console.log("Selection: " + index0 + ", " + index1 + ", " + index2);
+                            var index0 = picker.selectedIndex(0);
+                            var index1 = picker.selectedIndex(1);
+                            var index2 = picker.selectedIndex(2);
+                            ListItemData.quantityID = index0;
+                            ListItemData.durationID = index1;
+                            ListItemData.monthID = index2;
+                            ListItemData.durationValue = dataModel.data([ 1, index1 ]).value;
+                            ListItemData.monthValue = dataModel.data([ 2, index2 ]).value;
+                            ListItem.view.updateItemValues(ListItemData);
+                            updateEnergy(dataModel.data([ 0, index0 ]).value, dataModel.data([ 1, index1 ]).value, dataModel.data([ 2, index2 ]).value)
+                            console.log("Selection: " + index0 + ", " + index1 + ", " + index2);
                         }
                         onCreationCompleted: {
                             picker.select(0, ListItemData.quantityID, ScrollAnimation.Smooth)
                             picker.select(1, ListItemData.durationID, ScrollAnimation.Smooth)
                             picker.select(2, ListItemData.monthID, ScrollAnimation.Smooth)
-                            updateEnergy(dataModel.data([ 0, ListItemData.quantityID]).value, dataModel.data([ 0, ListItemData.durationID]).value, dataModel.data([ 0,ListItemData.monthID]).value)
+                            updateEnergy(dataModel.data([ 0, ListItemData.quantityID ]).value, dataModel.data([ 0, ListItemData.durationID ]).value, dataModel.data([ 0, ListItemData.monthID ]).value)
+                        }
+                        onExpandedChanged: {
+                            console.log("New selection")
+                            ListItem.selectionChanged(true)
                         }
 
                     }
 
                 }
             ]
-            function updateItemValues(listItemData){
+            onSelectionChanged: {
+                if(selected){
+                    console.log("Scroll")
+                    itemListView.scrollToItem(indexPath,ScrollAnimation.Smooth)
+                }
+            }
+
+            function updateItemValues(listItemData) {
                 //qt_dbobject.updateItemValues(listItemData)
             }
         }
+        scrollViewProperties.scrollMode: ScrollMode.Vertical
+
     }
 }

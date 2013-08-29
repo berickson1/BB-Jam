@@ -10,9 +10,6 @@
 Location::Location(const int &id, const QString &name, const QString &image, QObject *parent) :QObject(parent), m_id(id), m_name(name), m_image(image){
 }
 
-Location::Location(QObject *parent) :QObject(parent){
-}
-
 int Location::id() const
 {
 	return m_id;
