@@ -53,7 +53,7 @@ Page {
                     enabled: false
                     textStyle.fontSize: FontSize.Small
                     
-                    text: qsTr("As the user is completing the report, they may click on the Save button to save their progress.  Please note that by selecting the back button this will also automatically save their progress. After the user has completed the entries, the user shall select “Report” in the action menu to see the results of their input.  The user will be able to see their results in three different ways.  First is the yearly, monthly, weekly, daily, and hourly use of electricity in their household. The second is the required amount of electrical generation by type of production (Solar, Wind, Nuclear, Coal, Oil, and Natural Gas). Finally, the user will be able to see a graph of their use based on the locations.")
+                    text: qsTr("As the user is completing the report, they may click on the Save button to save their progress.  Please note that by selecting the back button this will also automatically save their progress. After the user has completed the entries, the user shall select “Report” in the action menu to see the results of their input.  The user will be able to see their results in three different ways.  First is the yearly, monthly, weekly, daily, and hourly use of electricity in their household. The second is the required amount of electrical generation by type of production (Wind, Nuclear, Coal, Oil, and Natural Gas). Finally, the user will be able to see a graph of their use based on the locations.")
                 }
                 Header {
                     title: "Open Energy Report"
