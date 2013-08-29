@@ -4,11 +4,11 @@
 <context>
     <name>PageAbout</name>
     <message>
-        <source>About</source>
+        <source>This application was developed by a computer science engineer (programmer) and architectural technologist (designer).  We hope to bring a better understanding to the population about their energy use, and make them aware about just how much input (coal, oil, solar, etc) is required just for their use. We are planning for further social integration, templates, costing, savings, and more in the pro iteration of the application so please stay tuned!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Thank you for downloading Energy Report, a project by a computer science engineer and a designer.  Our goal </source>
+        <source>-BE + PM</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -23,11 +23,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>After choosing a new energy report, the user will be required to fill in the appropriate information regarding the report.  Please enter the name of the project, select the household type, age of house, number of adults and children living in the house, country, and postal code/zip code. Once complete, click the â€œContinueâ€ button to move on. </source>
+        <source>After choosing a new energy report, the user will be required to fill in the appropriate information regarding the report.  Please enter the name of the project.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select a location from the list. From here, the user is able to select products associated with the location. Select the item, and fill in the appropriate information. Select the number of items (quantity), for how long the user will use the item (per day), and finally how often the user will use the item over the course of a year. </source>
+        <source>Select a location from the list. From here, the user is able to select products associated with the location. Select the item, and fill in the appropriate information. Select the number of items (quantity), for how long the user will use the item (per day), and finally how often the user will use the item over the course of a year. Please note a few acronyms that may be helpful to remember: FF â€“ Frost Free, MD â€“ Manual Defrost, SC â€“ Self Cleaning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>After the user selects Open Energy Report, the list of reports will be presented, and the user shall select the appropriate report. Once this has loaded, the use is identical to New Energy Report. Please see New Energy Report. If the user would like to copy the copy, and save it as a different report, they shall select â€œSave Asâ€ in the overflow menu; a prompt will follow allowing them to enter the name of the copied report. If the user wishes to delete the report, they may do so by selecting the overflow menu and selecting delete. </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>As the user is completing the report, they may click on the Save button to save their progress.  Please note that by selecting the back button this will also automatically save their progress. After the user has completed the entries, the user shall select â€œReportâ€ in the action menu to see the results of their input.  The user will be able to see their results in three different ways.  First is the yearly, monthly, weekly, daily, and hourly use of electricity in their household. The second is the required amount of electrical generation by type of production (Solar, Wind, Nuclear, Coal, Oil, and Natural Gas). Finally, the user will be able to see a graph of their use based on the locations.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
