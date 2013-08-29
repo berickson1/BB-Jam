@@ -142,7 +142,7 @@ Page {
         onSelectionChanged: {
             //if(selected){
             console.log("Scroll")
-            itemListView.scrollToItem(indexPath, ScrollAnimation.Smooth)
+            itemListView.scrollToItem(indexPath, ScrollAnimation.None)
             //}
         }
 
