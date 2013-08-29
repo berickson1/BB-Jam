@@ -82,11 +82,11 @@ Page {
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/share.png"
         },
-        ActionItem {
+        /*ActionItem {
             title: "Settings"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/settings.png"
-        },
+        },*/
         ActionItem {
             title: "Save As"
             ActionBar.placement: ActionBarPlacement.InOverflow
