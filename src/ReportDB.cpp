@@ -290,16 +290,18 @@ QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID,
 }
 
 //Output reports from datamodel into SystemListDialog
-void ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
+int ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
 	readReports();
 
 	outDialog->clearList();
 
 	int reportCount = m_reportsDataModel->childCount(QVariantList());
-	for (int i = 0; i < reportCount; i++) {
+	int i;
+	for (i = 0; i < reportCount; i++) {
 		Report * r = getReportAtIndex(i);
 		outDialog->appendItem(r->name());
 	}
+	return reportCount;
 
 }
 

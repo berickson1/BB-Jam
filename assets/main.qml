@@ -47,8 +47,11 @@ NavigationPane {
                     image: "asset:///images/openReport.png"
                     onClicked: {
                         promptOpen.clearList();
-                        dbobject.outputReportItems(promptOpen);
-                        promptOpen.show();
+                        if(dbobject.outputReportItems(promptOpen) > 0){
+                            promptOpen.show();
+                        } else {
+                            toastNoReport.show();
+                        }
                     }
                 }
             }
@@ -144,6 +147,10 @@ NavigationPane {
         SystemToast {
             id: savedToast
             body: "Changes Saved!"
+        },
+        SystemToast {
+            id: toastNoReport
+            body: "No Saved Reports!"
         }
     ]
     onCreationCompleted: {

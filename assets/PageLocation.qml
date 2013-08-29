@@ -62,11 +62,11 @@ Page {
                 savedToast.show()
             }
         },
-        ActionItem {
+        /*ActionItem {
             title: "Search"
             ActionBar.placement: ActionBarPlacement.OnBar
             imageSource: "asset:///images/search.png"
-        },
+        },*/
         ActionItem {
             title: "Results"
             ActionBar.placement: ActionBarPlacement.OnBar

@@ -38,7 +38,7 @@ public:
     Q_INVOKABLE int createReport(const QString &name);
     Q_INVOKABLE void readReports();
     Q_INVOKABLE bool updateReport(const QString &key, const QString &name);
-    Q_INVOKABLE void outputReportItems(bb::system::SystemListDialog * outputDialog);
+    Q_INVOKABLE int outputReportItems(bb::system::SystemListDialog * outputDialog);
     Q_INVOKABLE QString getSelectedReportName(int index);
     Q_INVOKABLE int getSelectedReportID(int index);
     Q_INVOKABLE void readLocations();
