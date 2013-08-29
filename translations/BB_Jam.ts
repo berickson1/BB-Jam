@@ -40,6 +40,25 @@
     </message>
 </context>
 <context>
+    <name>PageResults</name>
+    <message>
+        <source>Summary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Graph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Energy Use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Energy Usage</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ReportDB</name>
     <message>
         <source>OK</source>
@@ -78,6 +97,10 @@
     </message>
     <message>
         <source>New Energy Report</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

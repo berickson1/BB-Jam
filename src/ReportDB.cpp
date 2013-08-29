@@ -289,6 +289,42 @@ QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID,
 	}
 }
 
+//Get energy usage value for a report
+float ReportDB::getEnergyUsageByReportID(int reportID) {
+	m_reportID = reportID;
+	//parseFloat(ListItemData.value * qty * hrs * 365 * months / 12 / 1000).toFixed(2) + "kWh"
+	float retval = 0;
+	if (!ReportDB::dbActive()) {
+		qDebug("DB Not active!");
+		return 0;
+	}
+	QSqlQuery query(m_database);
+	//SUM(quantityID * durationID * monthID * value)
+	//ListItemData.value * qty * hrs * 365 * months / 12 / 1000
+	const QString sqlQuery =
+			"SELECT SUM(ROUND(365.0 * durationValue * value * quantityID * monthValue / 12.0 / 1000.0, 2)) as energy FROM ReportData AS R "
+					"JOIN Items AS I ON R.itemID = I.id "
+					"WHERE reportID = :reportID";
+
+	query.prepare(sqlQuery);
+	query.bindValue("reportID", reportID);
+
+	if (query.exec()) {
+		const int db_energy = query.record().indexOf("energy");
+		if (query.next()) {
+			retval = query.value(db_energy).toFloat();
+			qDebug() << "Retval" << retval;
+		}
+		qDebug() << "Read record from the database";
+		return retval;
+
+	} else {
+		//TODO: Handle this more gracefully
+		qDebug() << "Error reading from database: " << query.lastError().text();
+		return retval;
+	}
+}
+
 //Output reports from datamodel into SystemListDialog
 int ReportDB::outputReportItems(bb::system::SystemListDialog * outDialog) {
 	readReports();
@@ -502,3 +538,4 @@ void ReportDB::alert(const QString &message) {
 	Q_ASSERT(ok);
 	dialog->show();
 }
+

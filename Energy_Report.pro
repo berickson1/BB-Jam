@@ -1,4 +1,4 @@
-APP_NAME = BB_Jam
+APP_NAME = Energy_Report
 
 CONFIG += qt warn_on cascades10
 LIBS   += -lbbdata

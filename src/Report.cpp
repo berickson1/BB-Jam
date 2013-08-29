@@ -10,9 +10,6 @@
 Report::Report(const int &id, const QString &name, QObject *parent) :QObject(parent), m_id(id), m_name(name){
 }
 
-Report::Report(QObject *parent) :QObject(parent){
-}
-
 int Report::id() const
 {
 	return m_id;

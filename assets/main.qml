@@ -1,7 +1,7 @@
 import bb.cascades 1.0
 import bb.system 1.0
 NavigationPane {
-    property variant qt_dbobject    
+    property variant qt_dbobject
     id: nav
     Menu.definition: MenuDefinition {
         actions: [
@@ -28,7 +28,7 @@ NavigationPane {
     }
     Page {
         Container {
-            
+
             layout: DockLayout {
 
             }
@@ -47,7 +47,7 @@ NavigationPane {
                     image: "asset:///images/openReport.png"
                     onClicked: {
                         promptOpen.clearList();
-                        if(dbobject.outputReportItems(promptOpen) > 0){
+                        if (dbobject.outputReportItems(promptOpen) > 0) {
                             promptOpen.show();
                         } else {
                             toastNoReport.show();
@@ -79,14 +79,14 @@ NavigationPane {
             id: pageResultsDefinition
             source: "PageResults.qml"
         },
-        SystemPrompt{
+        SystemPrompt {
             id: promptNew
             title: qsTr("New Energy Report Name")
             modality: SystemUiModality.Application
             inputField.inputMode: SystemUiInputMode.Default
             inputField.emptyText: qsTr("Please enter a Energy Report name...")
-            onFinished:{
-                if (result == SystemUiResult.ConfirmButtonSelection){
+            onFinished: {
+                if (result == SystemUiResult.ConfirmButtonSelection) {
                     console.log("Report Name: " + inputFieldTextEntry());
                     var pageLocation = pageLocationDefinition.createObject();
                     pageLocation.newReport = true;
@@ -98,14 +98,14 @@ NavigationPane {
                 }
             }
         },
-        SystemPrompt{
+        SystemPrompt {
             id: promptSaveAs
             title: qsTr("Save As")
             modality: SystemUiModality.Application
             inputField.inputMode: SystemUiInputMode.Default
             inputField.emptyText: qsTr("Please enter a Energy Report name...")
-            onFinished:{
-                if (result == SystemUiResult.ConfirmButtonSelection){
+            onFinished: {
+                if (result == SystemUiResult.ConfirmButtonSelection) {
                     console.log("Save As Report Name: " + inputFieldTextEntry());
                     qt_dbobject.copyReport(inputFieldTextEntry())
                     nav.pop();
@@ -119,8 +119,8 @@ NavigationPane {
             title: qsTr("Delete?")
             body: qsTr("This action will permanently delete this report")
             modality: SystemUiModality.Application
-            onFinished:{
-                if (result == SystemUiResult.ConfirmButtonSelection){
+            onFinished: {
+                if (result == SystemUiResult.ConfirmButtonSelection) {
                     qt_dbobject.deleteReport()
                     nav.pop();
                 }
@@ -132,7 +132,7 @@ NavigationPane {
             title: qsTr("Open Energy Report")
             selectionMode: ListSelectionMode.Single
             onFinished: {
-                if (result == SystemUiResult.ConfirmButtonSelection){
+                if (result == SystemUiResult.ConfirmButtonSelection) {
                     console.log("Report Name Index: " + selectedIndices)
                     var pageLocation = pageLocationDefinition.createObject();
                     pageLocation.newReport = false;
@@ -140,9 +140,9 @@ NavigationPane {
                     pageLocation.id = dbobject.getSelectedReportID(selectedIndices[0]);
                     nav.push(pageLocation);
                 }
-                
+
             }
-            
+
         },
         SystemToast {
             id: savedToast
@@ -158,13 +158,11 @@ NavigationPane {
     }
     onPopTransitionEnded: {
         page.destroy();
-        if(page.id){
+        if (page.id) {
             savedToast.show();
         }
     }
     onTopChanged: {
-        if(page.id)[
-        	page.refresh()
-        ]
+        if (page.id) [ page.refresh() ]
     }
 }

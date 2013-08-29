@@ -3,6 +3,13 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
+        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+
+        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+
+        LIBS += -lbbmsp \
+                -lbbplatformbbm
+
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \
                  $$quote($$BASEDIR/src/Report.cpp) \
@@ -18,6 +25,13 @@ device {
     }
 
     CONFIG(release, debug|release) {
+        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+
+        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+
+        LIBS += -lbbmsp \
+                -lbbplatformbbm
+
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \
                  $$quote($$BASEDIR/src/Report.cpp) \
@@ -35,6 +49,13 @@ device {
 
 simulator {
     CONFIG(debug, debug|release) {
+        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+
+        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+
+        LIBS += -lbbmsp \
+                -lbbplatformbbm
+
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \
                  $$quote($$BASEDIR/src/Report.cpp) \
@@ -73,4 +94,5 @@ lupdate_inclusion {
              $$quote($$BASEDIR/../src/*.hxx)
 }
 
-TRANSLATIONS =  $$quote($${TARGET}.ts)
+TRANSLATIONS =  $$quote($${TARGET}_en.ts) \
+         $$quote($${TARGET}.ts)

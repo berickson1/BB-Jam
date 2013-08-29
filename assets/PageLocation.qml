@@ -73,6 +73,8 @@ Page {
             imageSource: "asset:///images/pie.png"
             onTriggered: {
                 var pageResults = pageResultsDefinition.createObject();
+                pageResults.id = id;
+                pageResults.name = name;
             	nav.push(pageResults);
             }
 
@@ -81,6 +83,9 @@ Page {
             title: "Share"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/share.png"
+            onTriggered: {
+                _app.inviteUserToDownloadViaBBM();
+            }
         },
         /*ActionItem {
             title: "Settings"
@@ -105,7 +110,7 @@ Page {
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/copy.png"
         },*/
-        ActionItem {
+        DeleteActionItem {
             title: "Delete"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/delete.png"

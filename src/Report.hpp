@@ -19,7 +19,6 @@ class Report: public QObject {
 	Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged FINAL)
 
 public:
-	Report(QObject *parent = 0);
 	Report(const int &id, const QString &name, QObject *parent = 0);
 
 	int id() const;

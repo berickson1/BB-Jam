@@ -5,14 +5,14 @@
 #include "ReportDB.hpp"
 #include <bb/cascades/SceneCover>
 #include <bb/cascades/Container>
-
-namespace bb
-{
-    namespace cascades
-    {
-        class Application;
-        class LocaleHandler;
-    }
+#include <bb/platform/bbm/Context>
+#include <bb/platform/bbm/MessageService>
+#include <bb/platform/bbm/UserProfile>
+namespace bb {
+namespace cascades {
+class Application;
+class LocaleHandler;
+}
 }
 
 class QTranslator;
@@ -23,18 +23,26 @@ class QTranslator;
  *
  */
 
-class ApplicationUI : public QObject
-{
-    Q_OBJECT
+class ApplicationUI: public QObject {
+Q_OBJECT
 public:
-    ApplicationUI(bb::cascades::Application *app);
-    virtual ~ApplicationUI() { }
-    ReportDB * m_reportDB;
+	ApplicationUI(bb::cascades::Application *app);
+	virtual ~ApplicationUI() {
+	}
+	ReportDB * m_reportDB;Q_INVOKABLE
+	void inviteUserToDownloadViaBBM();Q_INVOKABLE
+	void updatePersonalMessage(const QString &message);
 private slots:
-    void onSystemLanguageChanged();
+	void onSystemLanguageChanged();
 private:
-    QTranslator* m_pTranslator;
-    bb::cascades::LocaleHandler* m_pLocaleHandler;
+	void handle_events();
+	QTranslator* m_pTranslator;
+	bb::cascades::LocaleHandler* m_pLocaleHandler;
+	bb::platform::bbm::UserProfile * m_userProfile;
+	bb::platform::bbm::Context *m_context;
+	bb::platform::bbm::MessageService *m_messageService;Q_SLOT
+	void registrationStateUpdated(
+			bb::platform::bbm::RegistrationState::Type state);
 };
 
 #endif /* ApplicationUI_HPP_ */
