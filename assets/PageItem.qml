@@ -131,7 +131,7 @@ Page {
                     }
                     onExpandedChanged: {
                         console.log("New selection")
-                        ListItem.view.scrollToItem(ListItem.indexPath, ScrollAnimation.Smooth)
+                        ListItem.view.scrollToItem(ListItem.indexPath, ScrollAnimation.None)
                         console.log("Scrolled")
                     }
 
@@ -139,12 +139,6 @@ Page {
 
             }
         ]
-        onSelectionChanged: {
-            //if(selected){
-            console.log("Scroll")
-            itemListView.scrollToItem(indexPath, ScrollAnimation.None)
-            //}
-        }
 
         function updateItemValues(listItemData) {
             //qt_dbobject.updateItemValues(listItemData)
