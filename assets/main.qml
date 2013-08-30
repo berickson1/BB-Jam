@@ -163,12 +163,12 @@ NavigationPane {
     }
     onPopTransitionEnded: {
         page.destroy();
-        if (page.newReport) {
+        if (page.newReport != null) {
             savedToast.show();
         }
     }
     onTopChanged: {
-        if (page.newReport) {
+        if (page.newReport != null) {
             page.refresh();
         }
     }
