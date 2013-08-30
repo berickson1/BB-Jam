@@ -3,12 +3,15 @@ BASEDIR =  $$quote($$_PRO_FILE_PWD_)
 
 device {
     CONFIG(debug, debug|release) {
-        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp) \
+                 $$quote(${QNX_TARGET}/usr/include/bb)
 
-        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp) \
+                 $$quote(${QNX_TARGET}/usr/include/bb)
 
         LIBS += -lbbmsp \
-                -lbbplatformbbm
+                -lbbplatformbbm \
+                -lbb
 
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \
@@ -25,12 +28,15 @@ device {
     }
 
     CONFIG(release, debug|release) {
-        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp) \
+                 $$quote(${QNX_TARGET}/usr/include/bb)
 
-        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp) \
+                 $$quote(${QNX_TARGET}/usr/include/bb)
 
         LIBS += -lbbmsp \
-                -lbbplatformbbm
+                -lbbplatformbbm \
+                -lbb
 
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \
@@ -49,12 +55,15 @@ device {
 
 simulator {
     CONFIG(debug, debug|release) {
-        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+        INCLUDEPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp) \
+                 $$quote(${QNX_TARGET}/usr/include/bb)
 
-        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp)
+        DEPENDPATH +=  $$quote(${QNX_TARGET}/usr/include/bbmsp) \
+                 $$quote(${QNX_TARGET}/usr/include/bb)
 
         LIBS += -lbbmsp \
-                -lbbplatformbbm
+                -lbbplatformbbm \
+                -lbb
 
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \

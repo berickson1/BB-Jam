@@ -1,5 +1,5 @@
 1
-92
+95
 720x1280/application-cover.png
 720x720/application-cover.png
 application-cover.png
@@ -89,6 +89,9 @@ VisualStyle.dark/week.png
 VisualStyle.dark/wind.png
 VisualStyle.dark/year.png
 washroom.png
+web/d3.v3.min.js
+web/data.csv
+web/graph.html
 week.png
 wind.png
 year.png

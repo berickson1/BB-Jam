@@ -26,6 +26,7 @@
 							<tool id="com.qnx.qcc.tool.compiler.346718900" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
 								<option id="com.qnx.qcc.option.compiler.optlevel.1860950215" name="Optimization Level" superClass="com.qnx.qcc.option.compiler.optlevel" value="com.qnx.qcc.option.compiler.optlevel.0" valueType="enumerated"/>
 								<option id="com.qnx.qcc.option.compiler.includePath.746070898" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/bb"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/bbmsp"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.1085428025" superClass="com.qnx.qcc.inputType.compiler"/>
@@ -37,6 +38,7 @@
 								<option id="com.qnx.qcc.option.linker.libraries.824313184" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
 									<listOptionValue builtIn="false" value="bbmsp"/>
 									<listOptionValue builtIn="false" value="bbplatformbbm"/>
+									<listOptionValue builtIn="false" value="bb"/>
 								</option>
 							</tool>
 							<tool id="com.qnx.qcc.tool.archiver.591114153" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>
@@ -72,6 +74,7 @@
 							<tool id="com.qnx.qcc.tool.compiler.1958054103" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
 								<option id="com.qnx.qcc.option.compiler.optlevel.599500839" name="Optimization Level" superClass="com.qnx.qcc.option.compiler.optlevel" value="com.qnx.qcc.option.compiler.optlevel.0" valueType="enumerated"/>
 								<option id="com.qnx.qcc.option.compiler.includePath.505115033" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/bb"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/bbmsp"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.303041451" superClass="com.qnx.qcc.inputType.compiler"/>
@@ -83,6 +86,7 @@
 								<option id="com.qnx.qcc.option.linker.libraries.1398077725" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
 									<listOptionValue builtIn="false" value="bbmsp"/>
 									<listOptionValue builtIn="false" value="bbplatformbbm"/>
+									<listOptionValue builtIn="false" value="bb"/>
 								</option>
 							</tool>
 							<tool id="com.qnx.qcc.tool.archiver.2035072710" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>
@@ -118,6 +122,7 @@
 							<tool id="com.qnx.qcc.tool.compiler.1663093317" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
 								<option id="com.qnx.qcc.option.compiler.optlevel.2054616" name="Optimization Level" superClass="com.qnx.qcc.option.compiler.optlevel" value="com.qnx.qcc.option.compiler.optlevel.0" valueType="enumerated"/>
 								<option id="com.qnx.qcc.option.compiler.includePath.118117400" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/bb"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/bbmsp"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.1754575384" superClass="com.qnx.qcc.inputType.compiler"/>
@@ -129,6 +134,7 @@
 								<option id="com.qnx.qcc.option.linker.libraries.1207294922" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
 									<listOptionValue builtIn="false" value="bbmsp"/>
 									<listOptionValue builtIn="false" value="bbplatformbbm"/>
+									<listOptionValue builtIn="false" value="bb"/>
 								</option>
 							</tool>
 							<tool id="com.qnx.qcc.tool.archiver.1240795996" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>
@@ -164,6 +170,7 @@
 							<tool id="com.qnx.qcc.tool.compiler.793101856" name="QCC Compiler" superClass="com.qnx.qcc.tool.compiler">
 								<option id="com.qnx.qcc.option.compiler.optlevel.706770611" name="Optimization Level" superClass="com.qnx.qcc.option.compiler.optlevel" value="com.qnx.qcc.option.compiler.optlevel.0" valueType="enumerated"/>
 								<option id="com.qnx.qcc.option.compiler.includePath.925277202" name="Include Directories (-I)" superClass="com.qnx.qcc.option.compiler.includePath" valueType="includePath">
+									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/bb"/>
 									<listOptionValue builtIn="false" value="${QNX_TARGET}/usr/include/bbmsp"/>
 								</option>
 								<inputType id="com.qnx.qcc.inputType.compiler.504106279" superClass="com.qnx.qcc.inputType.compiler"/>
@@ -175,6 +182,7 @@
 								<option id="com.qnx.qcc.option.linker.libraries.1416474171" name="Libraries (-l)" superClass="com.qnx.qcc.option.linker.libraries" valueType="libs">
 									<listOptionValue builtIn="false" value="bbmsp"/>
 									<listOptionValue builtIn="false" value="bbplatformbbm"/>
+									<listOptionValue builtIn="false" value="bb"/>
 								</option>
 							</tool>
 							<tool id="com.qnx.qcc.tool.archiver.1327274753" name="QCC Archiver" superClass="com.qnx.qcc.tool.archiver"/>

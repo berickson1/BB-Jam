@@ -54,6 +54,7 @@ Page {
                 }
                 Container {
                     id:containerSummary
+                    horizontalAlignment: HorizontalAlignment.Center
                     Header {
                         title: qsTr("Energy Usage")
                         subtitle: energy.toFixed(2) + " kWh"
@@ -94,21 +95,22 @@ Page {
                 Container {
                     id:containerGraph
                     visible: false
-                    TextArea {
-                        text: "Graphs Coming Soon!"
-                        textStyle.fontSize: FontSize.XLarge
-                        textStyle.fontStyle: FontStyle.Italic
+                    WebView {
+                        id: webGraph
+                        url: "local:///assets/web/graph.html"
+                        horizontalAlignment: HorizontalAlignment.Center
                     }
+                    horizontalAlignment: HorizontalAlignment.Center
                 }
-                
+
                 Container {
-                    id:containerEnergyUse
+                    id: containerEnergyUse
                     visible: false
                     StandardListItem {
                         title: "Coal"
                         description: (energy / 1870).toFixed(2) + " Tonnes"
                         imageSource: "coal.png"
-                    
+
                     }
                     StandardListItem {
                         title: "Oil"
@@ -119,19 +121,18 @@ Page {
                         title: "Wind"
                         description: (energy / 375.0).toFixed(2) + " Turbines"
                         imageSource: "wind.png"
-                    
+
                     }
                     StandardListItem {
                         title: "Nuclear"
                         description: (energy / 1000000.0).toFixed(2) + " Plants"
                         imageSource: "nuclear.png"
-                    
+
                     }
                     StandardListItem {
                         title: "Natural Gas"
                         description: (energy / 125.0).toFixed(2) + " Cubic Feet"
                         imageSource: "naturalGas.png"
-                    
                     }
                 }
             }
