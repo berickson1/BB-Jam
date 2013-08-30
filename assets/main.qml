@@ -167,4 +167,9 @@ NavigationPane {
             savedToast.show();
         }
     }
+    onTopChanged: {
+        if (page.newReport) {
+            page.refresh();
+        }
+    }
 }
