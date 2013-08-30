@@ -135,6 +135,7 @@
 	</column>
 	<column colspan="2">
 		<months text="Year Round" value="12" />
+		<months text="Monthly" value="0.395" />
 		<months text="Weekly" value="1.714" />
 		<months text="Bi-Weekly" value="0.857" />
 		<months text="Week Days" value="8.571" />
