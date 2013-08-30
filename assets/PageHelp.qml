@@ -64,7 +64,7 @@ Page {
                     enabled: false
                     textStyle.fontSize: FontSize.Small
                     
-                    text: qsTr("After the user selects Open Energy Report, the list of reports will be presented, and the user shall select the appropriate report. Once this has loaded, the use is identical to New Energy Report. Please see New Energy Report. If the user would like to copy the copy, and save it as a different report, they shall select “Save As” in the overflow menu; a prompt will follow allowing them to enter the name of the copied report. If the user wishes to delete the report, they may do so by selecting the overflow menu and selecting delete. ")
+                    text: qsTr("After the user selects Open Energy Report, the list of reports will be presented, and the user shall select the appropriate report. Once this has loaded, the use is identical to New Energy Report. Please see New Energy Report. If the user would like to copy the report, and save it as a different report, they shall select “Save As” in the overflow menu; a prompt will follow allowing them to enter the name of the copied report. If the user wishes to delete the report, they may do so by selecting the overflow menu and selecting delete. ")
                 }
             }
 
