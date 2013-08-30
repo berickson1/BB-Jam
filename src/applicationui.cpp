@@ -62,7 +62,8 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
 }
 
 void ApplicationUI::inviteUserToDownloadViaBBM() {
-	if (m_context->registrationState()
+	bb::platform::bbm::RegistrationState::Type state = m_context->registrationState();
+	if (state
 			== bb::platform::bbm::RegistrationState::Allowed) {
 		m_messageService->sendDownloadInvitation();
 	} else {
