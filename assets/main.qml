@@ -21,13 +21,6 @@ NavigationPane {
                     var pageAbout = pageAboutDefinition.createObject();
                     nav.push(pageAbout);
                 }
-            },
-            ActionItem {
-                title: "Share App"
-                imageSource: "asset:///images/share.png"
-                onTriggered: {
-                    _app.inviteUserToDownloadViaBBM();
-                }
             }
         ]
     }
@@ -116,6 +109,21 @@ NavigationPane {
                     nav.pop();
                 } else {
                     console.log("Prompt Closed");
+                }
+            }
+        },
+        SystemPrompt {
+            id: promptShare
+            title: qsTr("Share Results")
+            modality: SystemUiModality.Application
+            inputField.inputMode: SystemUiInputMode.Default
+            inputField.defaultText: "Using Energy Report, I discovered that I use " + qt_dbobject.getEnergyUsageActiveReport().toFixed(2) + "kWh!"
+            onFinished: {
+                if (result == SystemUiResult.ConfirmButtonSelection) {
+                    console.log("Update BBM Status: " + inputFieldTextEntry());
+                    qt_dbobject.sendBBMUpdate(inputFieldTextEntry())
+                } else {
+                    console.log("Share canceled!");
                 }
             }
         },

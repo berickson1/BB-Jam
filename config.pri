@@ -15,6 +15,7 @@ device {
 
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \
+                 $$quote($$BASEDIR/src/RegistrationHandler.cpp) \
                  $$quote($$BASEDIR/src/Report.cpp) \
                  $$quote($$BASEDIR/src/ReportDB.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
@@ -22,6 +23,7 @@ device {
 
         HEADERS +=  $$quote($$BASEDIR/src/Item.hpp) \
                  $$quote($$BASEDIR/src/Location.hpp) \
+                 $$quote($$BASEDIR/src/RegistrationHandler.hpp) \
                  $$quote($$BASEDIR/src/Report.hpp) \
                  $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
@@ -40,6 +42,7 @@ device {
 
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \
+                 $$quote($$BASEDIR/src/RegistrationHandler.cpp) \
                  $$quote($$BASEDIR/src/Report.cpp) \
                  $$quote($$BASEDIR/src/ReportDB.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
@@ -47,6 +50,7 @@ device {
 
         HEADERS +=  $$quote($$BASEDIR/src/Item.hpp) \
                  $$quote($$BASEDIR/src/Location.hpp) \
+                 $$quote($$BASEDIR/src/RegistrationHandler.hpp) \
                  $$quote($$BASEDIR/src/Report.hpp) \
                  $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)
@@ -67,6 +71,7 @@ simulator {
 
         SOURCES +=  $$quote($$BASEDIR/src/Item.cpp) \
                  $$quote($$BASEDIR/src/Location.cpp) \
+                 $$quote($$BASEDIR/src/RegistrationHandler.cpp) \
                  $$quote($$BASEDIR/src/Report.cpp) \
                  $$quote($$BASEDIR/src/ReportDB.cpp) \
                  $$quote($$BASEDIR/src/applicationui.cpp) \
@@ -74,6 +79,7 @@ simulator {
 
         HEADERS +=  $$quote($$BASEDIR/src/Item.hpp) \
                  $$quote($$BASEDIR/src/Location.hpp) \
+                 $$quote($$BASEDIR/src/RegistrationHandler.hpp) \
                  $$quote($$BASEDIR/src/Report.hpp) \
                  $$quote($$BASEDIR/src/ReportDB.hpp) \
                  $$quote($$BASEDIR/src/applicationui.hpp)

@@ -5,6 +5,7 @@
 #include "applicationui.hpp"
 
 #include <Qt/qdeclarativedebug.h>
+#include "RegistrationHandler.hpp"
 
 using namespace bb::cascades;
 

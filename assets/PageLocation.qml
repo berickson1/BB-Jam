@@ -1,6 +1,5 @@
 import bb.cascades 1.0
 Page {
-    objectName: locationPage
     property bool newReport
     property string name
     property int id
@@ -60,6 +59,14 @@ Page {
             imageSource: "asset:///images/save.png"
             onTriggered: {
                 savedToast.show()
+            }
+        },
+        ActionItem {
+            title: "Share Results"
+            ActionBar.placement: ActionBarPlacement.OnBar
+            imageSource: "asset:///images/share.png"
+            onTriggered: {
+                promptShare.show();
             }
         },
         /*ActionItem {

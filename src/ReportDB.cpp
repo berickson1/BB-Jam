@@ -288,6 +288,10 @@ QString ReportDB::getEnergyUsageByLocationID_ReportID(int locationID,
 		return retString;
 	}
 }
+//Get energy usage value for a report
+float ReportDB::getEnergyUsageActiveReport() {
+	return getEnergyUsageByReportID(m_reportID);
+}
 
 //Get energy usage value for a report
 float ReportDB::getEnergyUsageByReportID(int reportID) {
@@ -354,6 +358,11 @@ Report * ReportDB::getReportAtIndex(int index) {
 bool ReportDB::updateReport(QString const&, QString const&) {
 	//TODO: Implement
 	return false;
+}
+
+//Emits BBMUpdate Signal with given value
+void ReportDB::sendBBMUpdate(const QString& newStatus){
+	emit BBMUpdate(newStatus);
 }
 
 //Update ReportData

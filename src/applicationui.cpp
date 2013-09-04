@@ -4,7 +4,14 @@
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
+#include "RegistrationHandler.hpp"
 
+#include <bb/cascades/Application>
+
+#include <QLocale>
+#include <QTranslator>
+
+#include <bb/platform/bbm/Context>
 
 using namespace bb::cascades;
 
@@ -47,60 +54,16 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
 
     // Set created root object as the application scene
     app->setScene(root);
-	m_context = new bb::platform::bbm::Context(
-			//UUID was generated at random for this sample
-			//BE SURE TO USE YOUR OWN UNIQUE UUID. You can gerneate one here: http://www.guidgenerator.com/
-			QUuid("93b43cf5-df17-4fab-bd4c-53571c385ca9"));
-	if (m_context->registrationState()
-			!= bb::platform::bbm::RegistrationState::Allowed) {
-		connect(m_context,
-				SIGNAL(registrationStateUpdated (bb::platform::bbm::RegistrationState::Type)),
-				this,
-				SLOT(registrationStateUpdated (bb::platform::bbm::RegistrationState::Type)));
-		m_context->requestRegisterApplication();
-	}
-}
+    const QUuid uuid("93b43cf5-df17-4fab-bd4c-53571c385ca9");
+    RegistrationHandler *regHandler = new RegistrationHandler(uuid, this);
+    regHandler->registerApplication();
+    m_profile = new bb::platform::bbm::UserProfile(&regHandler->context(), this);
 
-void ApplicationUI::inviteUserToDownloadViaBBM() {
-	bb::platform::bbm::RegistrationState::Type state = m_context->registrationState();
-	if (state
-			== bb::platform::bbm::RegistrationState::Allowed) {
-		m_messageService->sendDownloadInvitation();
-	} else {
-		SystemDialog *bbmDialog = new SystemDialog("OK");
-		bbmDialog->setTitle("BBM Connection Error");
-		bbmDialog->setBody(
-				"BBM is not currently connected. Please setup / sign-in to BBM to remove this message.");
-		connect(bbmDialog, SIGNAL(finished(bb::system::SystemUiResult::Type)),
-				this, SLOT(dialogFinished(bb::system::SystemUiResult::Type)));
-		bbmDialog->show();
-		return;
-	}
-}
-void ApplicationUI::updatePersonalMessage(const QString &message) {
-	if (m_context->registrationState()
-			== bb::platform::bbm::RegistrationState::Allowed) {
-		m_userProfile->requestUpdatePersonalMessage(message);
-	} else {
-		SystemDialog *bbmDialog = new SystemDialog("OK");
-		bbmDialog->setTitle("BBM Connection Error");
-		bbmDialog->setBody(
-				"BBM is not currently connected. Please setup / sign-in to BBM to remove this message.");
-		connect(bbmDialog, SIGNAL(finished(bb::system::SystemUiResult::Type)),
-				this, SLOT(dialogFinished(bb::system::SystemUiResult::Type)));
-		bbmDialog->show();
-		return;
-	}
-}
-void ApplicationUI::registrationStateUpdated(
-		bb::platform::bbm::RegistrationState::Type state) {
-	if (state == bb::platform::bbm::RegistrationState::Allowed) {
-		m_messageService = new bb::platform::bbm::MessageService(m_context,
-				this);
-		m_userProfile = new bb::platform::bbm::UserProfile(m_context, this);
-	} else if (state == bb::platform::bbm::RegistrationState::Unregistered) {
-		m_context->requestRegisterApplication();
-	}
+    if(!QObject::connect(m_reportDB, SIGNAL(BBMUpdate(QString)), this, SLOT(onBBMStatusUpdate(QString)))) {
+            // This is an abnormal situation! Something went wrong!
+            // Add own code to recover here
+            qWarning() << "Recovering from a failed connect()";
+        }
 }
 
 void ApplicationUI::onSystemLanguageChanged()
@@ -112,4 +75,9 @@ void ApplicationUI::onSystemLanguageChanged()
     if (m_pTranslator->load(file_name, "app/native/qm")) {
         QCoreApplication::instance()->installTranslator(m_pTranslator);
     }
+}
+void ApplicationUI::onBBMStatusUpdate(const QString& newStatus)
+{
+	bool what = m_profile->requestUpdatePersonalMessage(newStatus);
+	qDebug() << "BBM UPDATE RETURN: " << what;
 }

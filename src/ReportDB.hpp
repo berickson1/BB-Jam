@@ -46,9 +46,13 @@ public:
     Q_INVOKABLE void updateItemValues(Item * newItem);
     Q_INVOKABLE QString getEnergyUsageByLocationID_ReportID(int locationID, int reportID);
     Q_INVOKABLE float getEnergyUsageByReportID(int reportID);
+    Q_INVOKABLE float getEnergyUsageActiveReport();
     Q_INVOKABLE void copyReport(const QString &reportName);
     Q_INVOKABLE void deleteReport();
+    Q_INVOKABLE void sendBBMUpdate(const QString& newStatus);
 	ReportDB();
+signals:
+	void BBMUpdate(QString newStatus);
 public slots:
 	void handleItemUpdated(Item* newItem);
 
