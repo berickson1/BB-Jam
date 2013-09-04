@@ -177,23 +177,28 @@ NavigationPane {
             peekEnabled: false
             Page {
                 Container {
-                    Header {
-                        title: "Walkthrough"
-                    }
-                    
-                    Label {
-                        text: "Welcome!\r\n\r\nThese helpful tips will help to guide you through the app on first run.  After clicking \"Continue\", you can either create a new report, or view & edit a sample report!"
-                        multiline: true
+                    Container {
+                        Header {
+                            title: "Walkthrough"
+                        }
+
+                        Label {
+                            text: "Welcome!\r\n\r\nThese helpful tips will help to guide you through the app on first run.  After clicking \"Continue\", you can either create a new report, or view & edit a sample report!"
+                            multiline: true
+                        }
                     }
                     Button {
+                        horizontalAlignment: HorizontalAlignment.Center
                         text: "Continue"
                         onClicked: {
                             mainPage.visible = true;
                             mainTips.close();
                             _app.saveValueFor("mainTipsDone", mainPage.visible);
                         }
+
                     }
                 }
+
             }
         }
     ]

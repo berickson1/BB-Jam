@@ -140,4 +140,15 @@ Page {
         }
 
     }
+    actions: [
+        
+        ActionItem {
+            title: "Share Results"
+            ActionBar.placement: ActionBarPlacement.OnBar
+            imageSource: "asset:///images/share.png"
+            onTriggered: {
+                promptShare.show();
+            }
+        }
+    ]
 }

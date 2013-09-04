@@ -74,6 +74,14 @@ Page {
                     textStyle.fontSize: FontSize.Small
                     text: qsTr("After the user selects Open Energy Report, the list of reports will be presented, and the user shall select the appropriate report. Once this has loaded, the use is identical to New Energy Report. Please see New Energy Report. \r\nIf the user would like to copy the copy, and save it as a different report, they shall select “Save As” in the overflow menu; a prompt will follow allowing them to enter the name of the copied report. \r\nIf the user wishes to delete the report, they may do so by selecting the overflow menu and selecting delete. \r\n")
                 }
+                Button {
+                    text: "Reset Walkthrough"
+                    onClicked: {
+                        _app.saveValueFor("mainTipsDone", false);
+                        _app.saveValueFor("locationTipsDone", false);
+                        _app.saveValueFor("itemTipsDone", false);
+                    }
+                }
 
             }
 

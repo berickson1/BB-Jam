@@ -168,6 +168,7 @@ Page {
                         multiline: true
                     }
                     Button {
+                        horizontalAlignment: HorizontalAlignment.Center
                         text: "Continue"
                         onClicked: {
                             itemPage.visible = true;

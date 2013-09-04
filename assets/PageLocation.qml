@@ -69,14 +69,6 @@ Page {
                 savedToast.show()
             }
         },
-        ActionItem {
-            title: "Share Results"
-            ActionBar.placement: ActionBarPlacement.OnBar
-            imageSource: "asset:///images/share.png"
-            onTriggered: {
-                promptShare.show();
-            }
-        },
         /*ActionItem {
             title: "Search"
             ActionBar.placement: ActionBarPlacement.OnBar
@@ -98,7 +90,15 @@ Page {
             title: "Settings"
             ActionBar.placement: ActionBarPlacement.InOverflow
             imageSource: "asset:///images/settings.png"
-        },*/
+            },*/
+        ActionItem {
+            title: "Share Results"
+            ActionBar.placement: ActionBarPlacement.InOverflow
+            imageSource: "asset:///images/share.png"
+            onTriggered: {
+                promptShare.show();
+            }
+        },
         ActionItem {
             title: "Save As"
             ActionBar.placement: ActionBarPlacement.InOverflow
@@ -141,6 +141,7 @@ Page {
                         multiline: true
                     }
                     Button {
+                        horizontalAlignment: HorizontalAlignment.Center
                         text: "Continue"
                         onClicked: {
                             locationPage.visible = true;
