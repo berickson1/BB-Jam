@@ -26,7 +26,8 @@ NavigationPane {
     }
     Page {
         Container {
-
+            id: mainPage
+            visible: _app.getValueFor("mainTipsDone", "false")
             layout: DockLayout {
 
             }
@@ -51,6 +52,12 @@ NavigationPane {
                             toastNoReport.show();
                         }
                     }
+                }
+            }
+            onCreationCompleted: {
+                if (mainPage.visible == false) {
+                    mainTips.open();
+                
                 }
             }
         }
@@ -164,6 +171,30 @@ NavigationPane {
         SystemToast {
             id: toastNoReport
             body: "No Saved Reports!"
+        },
+        Sheet {
+            id: mainTips
+            peekEnabled: false
+            Page {
+                Container {
+                    Header {
+                        title: "Walkthrough"
+                    }
+                    
+                    Label {
+                        text: "Welcome!\r\n\r\nThese helpful tips will help to guide you through the app on first run.  After clicking \"Continue\", you can either create a new report, or view & edit a sample report!"
+                        multiline: true
+                    }
+                    Button {
+                        text: "Continue"
+                        onClicked: {
+                            mainPage.visible = true;
+                            mainTips.close();
+                            _app.saveValueFor("mainTipsDone", mainPage.visible);
+                        }
+                    }
+                }
+            }
         }
     ]
     onCreationCompleted: {

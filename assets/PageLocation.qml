@@ -16,6 +16,8 @@ Page {
         title: name;
     }
     Container {
+        id: locationPage
+        visible: _app.getValueFor("locationTipsDone", "false")
         ListView {
             id: listViewLocation
             dataModel: qt_dbobject.locationDataModel
@@ -49,6 +51,12 @@ Page {
                 var pageItems = pageItemsDefinition.createObject();
                 pageItems.itemPageTitle = chosenItem.name;
                 nav.push(pageItems);
+            }
+        }
+        onCreationCompleted: {
+            if (locationPage.visible == false) {
+                locationTips.open();
+
             }
         }
     }
@@ -119,5 +127,30 @@ Page {
         }
         
     ]
-    
+    attachedObjects: [
+        Sheet {
+            id: locationTips
+            peekEnabled: false
+            Page {
+                Container {
+                    Header {
+                        title: "Walkthrough"
+                    }
+                    Label {
+                        text: "Great! Now that you've opened a report you can add and remove items from your household. To get started, select a location in your home.\r\n\r\nFrom this page you can also access Results by clicking on the graph icon at the bottom of the page!"
+                        multiline: true
+                    }
+                    Button {
+                        text: "Continue"
+                        onClicked: {
+                            locationPage.visible = true;
+                            locationTips.close();
+                            _app.saveValueFor("locationTipsDone", locationPage.visible);
+                        }
+                    }
+                }
+            }
+        }
+    ]
+
 }
