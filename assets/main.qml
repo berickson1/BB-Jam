@@ -124,7 +124,7 @@ NavigationPane {
             title: qsTr("Share Results")
             modality: SystemUiModality.Application
             inputField.inputMode: SystemUiInputMode.Default
-            inputField.defaultText: "Using Energy Report, I discovered that I use " + qt_dbobject.getEnergyUsageActiveReport().toFixed(2) + "kWh!"
+            inputField.defaultText: "Using Energy Report, I discovered that I use " + qt_dbobject.getEnergyUsageActiveReport().toFixed(2) + " kWh a year!"
             onFinished: {
                 if (result == SystemUiResult.ConfirmButtonSelection) {
                     console.log("Update BBM Status: " + inputFieldTextEntry());
