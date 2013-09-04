@@ -9,6 +9,7 @@ Page {
         title: name;
     }
     Container {
+        topPadding: 20.0
         ScrollView {
             content: Container {
                 SegmentedControl {
