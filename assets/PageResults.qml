@@ -39,7 +39,7 @@ Page {
                             }
                         },
                         Option {
-                            text: qsTr("Energy Use")
+                            text: qsTr("Energy Input")
                             onSelectedChanged: {
                                 if (selected) {
                                     //Display Energy Use Container
@@ -57,7 +57,7 @@ Page {
                     id:containerSummary
                     horizontalAlignment: HorizontalAlignment.Center
                     Header {
-                        title: qsTr("Energy Usage")
+                        title: "Energy Usage : " + energy.toFixed(2) + " kWh"
                         subtitle: energy.toFixed(2) + " kWh"
                     }
                     StandardListItem {
@@ -126,7 +126,7 @@ Page {
                     }
                     StandardListItem {
                         title: "Nuclear"
-                        description: (energy / 1000000.0).toFixed(2) + " Plants"
+                        description: (energy / 1000000.0).toFixed(4) + " Plants (1MW)"
                         imageSource: "nuclear.png"
 
                     }
