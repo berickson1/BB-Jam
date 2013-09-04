@@ -71,8 +71,8 @@ public:
     /**
      * Returns the BBM context that is associated with this application.
      */
-    bb::platform::bbm::Context& context()
-    { return m_context; }
+    bb::platform::bbm::Context* context()
+    { return &m_context; }
 
     /**
      * Returns the registration progress.

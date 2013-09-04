@@ -27,6 +27,14 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
         // Add own code to recover here
         qWarning() << "Recovering from a failed connect()";
     }
+    const QUuid uuid("93b43cf5-df17-4fab-bd4c-53571c385ca9");
+    regHandler = new RegistrationHandler(uuid, this);
+    regHandler->registerApplication();
+    if(!QObject::connect(m_reportDB, SIGNAL(BBMUpdate(QString)), this, SLOT(onBBMStatusUpdate(QString)))) {
+            // This is an abnormal situation! Something went wrong!
+            // Add own code to recover here
+            qWarning() << "Recovering from a failed connect()";
+        }
     // initial load
     onSystemLanguageChanged();
 
@@ -52,18 +60,9 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
         Application::instance()->setCover(sceneCover);
     }
 
+
     // Set created root object as the application scene
     app->setScene(root);
-    const QUuid uuid("93b43cf5-df17-4fab-bd4c-53571c385ca9");
-    RegistrationHandler *regHandler = new RegistrationHandler(uuid, this);
-    regHandler->registerApplication();
-    m_profile = new bb::platform::bbm::UserProfile(&regHandler->context(), this);
-
-    if(!QObject::connect(m_reportDB, SIGNAL(BBMUpdate(QString)), this, SLOT(onBBMStatusUpdate(QString)))) {
-            // This is an abnormal situation! Something went wrong!
-            // Add own code to recover here
-            qWarning() << "Recovering from a failed connect()";
-        }
 }
 
 void ApplicationUI::onSystemLanguageChanged()
@@ -78,6 +77,25 @@ void ApplicationUI::onSystemLanguageChanged()
 }
 void ApplicationUI::onBBMStatusUpdate(const QString& newStatus)
 {
-	bool what = m_profile->requestUpdatePersonalMessage(newStatus);
+	qDebug() << "StringVal" << newStatus;
+	bb::platform::bbm::UserProfile *profile = new bb::platform::bbm::UserProfile(regHandler->context(), this);
+	bool what = profile->requestUpdatePersonalMessage(newStatus);
 	qDebug() << "BBM UPDATE RETURN: " << what;
+}
+
+QString ApplicationUI::getValueFor(const QString &objectName, const QString &defaultValue)
+{
+    QSettings settings;
+
+    if (settings.value(objectName).isNull()) {
+        return defaultValue;
+    }
+
+    return settings.value(objectName).toString();
+}
+
+void ApplicationUI::saveValueFor(const QString &objectName, const QString &inputValue)
+{
+    QSettings settings;
+    settings.setValue(objectName, QVariant(inputValue));
 }
