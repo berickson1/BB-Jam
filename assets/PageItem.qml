@@ -131,7 +131,7 @@ Page {
                             picker.select(0, ListItemData.quantityID, ScrollAnimation.Smooth)
                             picker.select(1, ListItemData.durationID, ScrollAnimation.Smooth)
                             picker.select(2, ListItemData.monthID, ScrollAnimation.Smooth)
-                            updateEnergy(dataModel.data([ 0, ListItemData.quantityID ]).value, dataModel.data([ 0, ListItemData.durationID ]).value, dataModel.data([ 0, ListItemData.monthID ]).value)
+                            updateEnergy(dataModel.data([ 0, ListItemData.quantityID ]).value, dataModel.data([ 1, ListItemData.durationID ]).value, dataModel.data([ 2, ListItemData.monthID ]).value)
                         }
                         onExpandedChanged: {
                             console.log("New selection")
