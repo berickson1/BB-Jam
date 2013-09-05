@@ -121,7 +121,7 @@ NavigationPane {
         },
         SystemPrompt {
             id: promptShare
-            title: qsTr("Share Results")
+            title: qsTr("Share Results to BBM")
             modality: SystemUiModality.Application
             inputField.inputMode: SystemUiInputMode.Default
             inputField.defaultText: "Using Energy Report, I discovered that I use " + qt_dbobject.getEnergyUsageActiveReport().toFixed(2) + " kWh a year!"
@@ -133,6 +133,7 @@ NavigationPane {
                     console.log("Share canceled!");
                 }
             }
+            body: "Click OK to update your BBM Status"
         },
         SystemDialog {
             id: promptDelete
