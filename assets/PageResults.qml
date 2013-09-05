@@ -143,7 +143,7 @@ Page {
     actions: [
         
         ActionItem {
-            title: "Share Results"
+            title: "Share Results to BBM"
             ActionBar.placement: ActionBarPlacement.OnBar
             imageSource: "asset:///images/share.png"
             onTriggered: {
