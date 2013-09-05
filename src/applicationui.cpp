@@ -5,6 +5,7 @@
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
 #include "RegistrationHandler.hpp"
+#include <bb/system/SystemToast>
 
 #include <bb/cascades/Application>
 
@@ -75,11 +76,20 @@ void ApplicationUI::onSystemLanguageChanged()
         QCoreApplication::instance()->installTranslator(m_pTranslator);
     }
 }
-void ApplicationUI::onBBMStatusUpdate(const QString& newStatus)
-{
+void ApplicationUI::onBBMStatusUpdate(const QString& newStatus) {
 	qDebug() << "StringVal" << newStatus;
-	bb::platform::bbm::UserProfile *profile = new bb::platform::bbm::UserProfile(regHandler->context(), this);
+	bb::platform::bbm::UserProfile *profile =
+			new bb::platform::bbm::UserProfile(regHandler->context(), this);
 	bool what = profile->requestUpdatePersonalMessage(newStatus);
+	SystemToast *toast = new SystemToast(this);
+	if (what) {
+		toast->setBody("BBM Status Updated");
+	} else {
+		toast->setBody(
+				"Unable to Update BBM Status! Please go to Application Permission in device Settings and ensure that Energy Report has \"Connect to BBM\" permission");
+	}
+	toast->setPosition(SystemUiPosition::MiddleCenter);
+	toast->show();
 	qDebug() << "BBM UPDATE RETURN: " << what;
 }
 
